@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
-import {
-  Play,
-  Pause,
-  Volume2,
-  VolumeX,
-  Sparkles,
-  ArrowRight,
-  TrendingUp
+import { 
+  Play, 
+  Pause, 
+  Volume2, 
+  VolumeX, 
+  Sparkles, 
+  ArrowRight, 
+  TrendingUp 
 } from "lucide-react";
 
 interface HeroProps {
@@ -21,20 +21,12 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.defaultMuted = true;
-      videoRef.current.muted = true;
-      videoRef.current.play().catch(() => { });
-    }
-  }, []);
-
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play().catch(() => { });
+        videoRef.current.play();
       }
       setIsPlaying(!isPlaying);
     }
@@ -49,7 +41,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
 
   return (
     <section className="relative pt-16 sm:pt-18 pb-8 sm:pb-14 w-full overflow-hidden">
-
+      
       {/* Background Subtle Accent Gradients */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#88cc00]/10 rounded-full blur-[160px] pointer-events-none -z-10" />
 
@@ -67,7 +59,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
       {/* 1. Cinematic Clean Full-Width Video Canvas (Edge-to-Edge with Minimal Inset) */}
       <div className="w-full px-1 sm:px-3 md:px-4 max-w-[1780px] mx-auto">
         <div className="relative w-full aspect-[16/10] sm:aspect-[16/9] lg:aspect-[21/9] xl:aspect-[2.35/1] rounded-xl sm:rounded-2xl xl:rounded-3xl overflow-hidden bg-black border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.12)] group">
-
+          
           {/* Top Video HUD Controls */}
           <div className="absolute top-3 sm:top-5 left-3 sm:left-5 right-3 sm:right-5 z-20 flex items-center justify-between pointer-events-none">
             <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-mono text-white shadow-lg">
@@ -94,18 +86,26 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             </div>
           </div>
 
-          {/* Video Element Optimized for Safari & Chrome */}
+          {/* Video Element with Auto Compression & Instant Poster Frame */}
           <video
             ref={videoRef}
-            src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
             className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out bg-black"
             autoPlay
             loop
-            muted
+            muted={isMuted}
             playsInline
             preload="metadata"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.jpg"
-          />
+          >
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
+          </video>
 
           {/* Subtle Vignette Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
@@ -123,7 +123,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
 
       {/* 2. Agency Headline & Manifesto Area (Below the Video) */}
       <div className="flex flex-col items-center text-center space-y-6 sm:space-y-8 max-w-6xl xl:max-w-7xl mx-auto pt-6 sm:pt-10 px-4">
-
+        
         {/* Tagline Eyebrow */}
         <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs sm:text-sm font-mono uppercase tracking-widest text-neutral-800 shadow-sm">
           <span className="w-2.5 h-2.5 rounded-full bg-[#88cc00] animate-ping" />
