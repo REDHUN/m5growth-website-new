@@ -98,7 +98,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.jpg"
           >
             <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
               type="video/mp4"
             />
             <source

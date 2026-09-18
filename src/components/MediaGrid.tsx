@@ -1,12 +1,36 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { Play, Sparkles, ArrowUpRight, Film, Layers, Monitor, Eye } from "lucide-react";
+import { ArrowUpRight, Film, Sparkles } from "lucide-react";
 
 export default function MediaGrid() {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          videoRef.current?.play().catch(() => {});
+        } else {
+          videoRef.current?.pause();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8">
+    <section ref={containerRef} className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8">
       
       {/* Section Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200">
@@ -32,26 +56,30 @@ export default function MediaGrid() {
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
         <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group">
           <video
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-            autoPlay
+            ref={videoRef}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out bg-black"
             playsInline
             loop
             muted
-            preload="metadata"
-            poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=75&w=800&auto=format&fit=crop"
+            preload="none"
+            poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.jpg"
           >
-            <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-              type="video/mp4"
-            />
-            <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-              type="video/mp4"
-            />
+            {isVisible && (
+              <>
+                <source
+                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+                  type="video/mp4"
+                />
+                <source
+                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+                  type="video/mp4"
+                />
+              </>
+            )}
           </video>
 
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white">
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white pointer-events-none">
             <div className="flex items-center justify-between">
               <span className="px-3 py-1 rounded-full bg-[#88cc00] text-black text-[11px] font-black uppercase tracking-wider">
                 Commercial Production
