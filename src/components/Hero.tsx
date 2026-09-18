@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { 
   Play, 
@@ -21,12 +21,20 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   const togglePlay = () => {
     if (videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
       } else {
-        videoRef.current.play();
+        videoRef.current.play().catch(() => {});
       }
       setIsPlaying(!isPlaying);
     }
@@ -86,26 +94,18 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             </div>
           </div>
 
-          {/* Video Element with Auto Compression & Instant Poster Frame */}
+          {/* Video Element Optimized for Safari & Chrome */}
           <video
             ref={videoRef}
+            src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
             className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out bg-black"
             autoPlay
             loop
-            muted={isMuted}
+            muted
             playsInline
             preload="metadata"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.jpg"
-          >
-            <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
-              type="video/mp4"
-            />
-            <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
-              type="video/mp4"
-            />
-          </video>
+          />
 
           {/* Subtle Vignette Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />

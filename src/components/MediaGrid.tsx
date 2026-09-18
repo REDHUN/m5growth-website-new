@@ -57,26 +57,19 @@ export default function MediaGrid() {
         <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group">
           <video
             ref={videoRef}
+            src={
+              isVisible
+                ? "https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+                : undefined
+            }
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out bg-black"
+            autoPlay
             playsInline
             loop
             muted
             preload="none"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.jpg"
-          >
-            {isVisible && (
-              <>
-                <source
-                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-                  type="video/mp4"
-                />
-                <source
-                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-                  type="video/mp4"
-                />
-              </>
-            )}
-          </video>
+          />
 
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white pointer-events-none">
