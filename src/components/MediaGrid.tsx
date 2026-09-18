@@ -37,8 +37,13 @@ export default function MediaGrid() {
             playsInline
             loop
             muted
-            poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=80&w=1400&auto=format&fit=crop"
+            preload="metadata"
+            poster="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?q=75&w=800&auto=format&fit=crop"
           >
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
             <source
               src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
               type="video/mp4"
@@ -71,9 +76,10 @@ export default function MediaGrid() {
         {/* Bento 2: 3D Product CGI (4 Cols) */}
         <div className="md:col-span-4 relative aspect-[4/5] sm:aspect-auto rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
-            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=75&w=600&auto=format&fit=crop"
             alt="3D Watch CGI"
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
@@ -99,9 +105,10 @@ export default function MediaGrid() {
         {/* Bento 3: Brand Identity & Packaging (4 Cols) */}
         <div className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
-            src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=75&w=600&auto=format&fit=crop"
             alt="Eco-Luxury Packaging"
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
@@ -127,9 +134,10 @@ export default function MediaGrid() {
         {/* Bento 4: Next.js Flagship (4 Cols) */}
         <div className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
+            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=600&auto=format&fit=crop"
             alt="Spatial Web Experience"
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover opacity-60 group-hover:opacity-75 group-hover:scale-105 transition-all duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />

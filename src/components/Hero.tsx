@@ -86,7 +86,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             </div>
           </div>
 
-          {/* Video Element */}
+          {/* Video Element with Auto Compression */}
           <video
             ref={videoRef}
             className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out"
@@ -94,7 +94,12 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             loop
             muted={isMuted}
             playsInline
+            preload="metadata"
           >
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
             <source
               src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
               type="video/mp4"
