@@ -95,7 +95,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
           </div>
 
           {/* Video Element Optimized for Safari & Chrome */}
-          {/* <video
+          <video
             ref={videoRef}
             src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"
             className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out bg-black"
@@ -105,7 +105,7 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             playsInline
             preload="metadata"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.jpg"
-          /> */}
+          />
 
           {/* Subtle Vignette Overlays */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 pointer-events-none" />
