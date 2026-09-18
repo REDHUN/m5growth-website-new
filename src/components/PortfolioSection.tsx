@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { CASE_STUDIES, CaseStudy } from "@/data/agencyData";
 import CaseStudyModal from "./CaseStudyModal";
 import { ArrowUpRight, TrendingUp, FolderGit2 } from "lucide-react";
@@ -18,13 +17,7 @@ export default function PortfolioSection({ onRequestQuoteWithContext }: Portfoli
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20" id="works">
       
       {/* Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200"
-      >
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200">
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
             <FolderGit2 className="w-3.5 h-3.5" />
@@ -42,20 +35,15 @@ export default function PortfolioSection({ onRequestQuoteWithContext }: Portfoli
         <p className="text-neutral-500 text-xs sm:text-sm max-w-sm sm:text-right font-mono">
           Featured architectural, e-commerce, and commercial performance milestones.
         </p>
-      </motion.div>
+      </div>
 
       {/* Projects Editorial Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
-        {CASE_STUDIES.map((project, idx) => (
-          <motion.div
+        {CASE_STUDIES.map((project) => (
+          <div
             key={project.id}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-30px" }}
-            transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-            whileHover={{ y: -8 }}
             onClick={() => setSelectedCaseStudy(project)}
-            className="group cursor-pointer relative rounded-3xl p-4 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col space-y-4 shadow-sm hover:shadow-xl"
+            className="group cursor-pointer relative rounded-3xl p-4 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col space-y-4 shadow-sm hover:shadow-xl hover:-translate-y-1.5"
           >
             {/* Image Container with Hover Zoom */}
             <div className="relative aspect-[16/11] w-full rounded-2xl overflow-hidden bg-black">
@@ -96,11 +84,11 @@ export default function PortfolioSection({ onRequestQuoteWithContext }: Portfoli
                   <span>{project.impact}</span>
                 </div>
 
-                <span className="text-[11px] text-neutral-500 font-mono group-hover:translate-x-1 transition-transform inline-block">Case Study &rarr;</span>
+                <span className="text-[11px] text-neutral-500 font-mono">Case Study &rarr;</span>
               </div>
             </div>
 
-          </motion.div>
+          </div>
         ))}
       </div>
 

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { AGENCY_STATS, AGENCY_PROCESS } from "@/data/agencyData";
-import { Zap, Target, Cpu, Rocket, TrendingUp } from "lucide-react";
+import { ArrowRight, Zap, Target, Cpu, Rocket, TrendingUp, CheckCircle } from "lucide-react";
 
 export default function StatsAndProcess() {
   const getPhaseIcon = (idx: number) => {
@@ -19,20 +18,10 @@ export default function StatsAndProcess() {
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-16 scroll-mt-20" id="process">
       
       {/* 4-Phase Growth Protocol Box */}
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.7 }}
-        className="relative rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-12"
-      >
+      <div className="relative rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-12">
         
-        {/* Glow ambient with animation */}
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], opacity: [0.15, 0.25, 0.15] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#88cc00]/20 rounded-full blur-[140px] pointer-events-none" 
-        />
+        {/* Glow ambient */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
 
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-neutral-200 relative z-10">
@@ -57,14 +46,9 @@ export default function StatsAndProcess() {
         {/* 4-Phase Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 relative z-10">
           {AGENCY_PROCESS.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -6 }}
-              className="p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-6 group shadow-sm hover:shadow-md"
+              className="p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-6 group shadow-sm hover:shadow-md hover:-translate-y-1"
             >
               <div className="flex justify-between items-center">
                 <span className="text-3xl font-black text-[#659900] font-mono">
@@ -87,23 +71,18 @@ export default function StatsAndProcess() {
               <div className="pt-2 border-t border-neutral-100 flex items-center gap-1 text-[11px] font-mono text-neutral-400 group-hover:text-black">
                 <span>Phase {idx + 1} Deliverable Ready</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-      </motion.div>
+      </div>
 
       {/* Global Impact Numbers */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         {AGENCY_STATS.map((stat, idx) => (
-          <motion.div
+          <div
             key={idx}
-            initial={{ opacity: 0, scale: 0.94 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.08 }}
-            whileHover={{ y: -4, borderColor: "#88cc00" }}
-            className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 transition-all space-y-2 group shadow-sm hover:shadow-md cursor-default"
+            className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 hover:border-black transition-all space-y-2 group shadow-sm hover:shadow-md"
           >
             <div className="text-4xl sm:text-5xl font-black text-black group-hover:text-[#659900] font-mono tracking-tight transition-colors">
               {stat.value}
@@ -114,7 +93,7 @@ export default function StatsAndProcess() {
             <p className="text-xs text-neutral-500 font-normal">
               {stat.desc}
             </p>
-          </motion.div>
+          </div>
         ))}
       </div>
 

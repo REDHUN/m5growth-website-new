@@ -1,21 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Sparkles, ArrowUpRight, Film } from "lucide-react";
+import { Play, Sparkles, ArrowUpRight, Film, Layers, Monitor, Eye } from "lucide-react";
 
 export default function MediaGrid() {
   return (
     <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8">
       
       {/* Section Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200"
-      >
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
             <Film className="w-4 h-4" />
@@ -30,19 +24,13 @@ export default function MediaGrid() {
         <p className="text-xs sm:text-sm text-neutral-600 max-w-md font-normal">
           A glimpse into our multidisciplinary output: from 4K commercial cinematography and 3D product CGI to luxury brand identities and lightning-fast digital flagships.
         </p>
-      </motion.div>
+      </div>
 
       {/* Asymmetric Agency Bento Showcase */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
         
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group"
-        >
+        <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group">
           <video
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
             autoPlay
@@ -78,16 +66,10 @@ export default function MediaGrid() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 2: 3D Product CGI (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-4 relative aspect-[4/5] sm:aspect-auto rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8"
-        >
+        <div className="md:col-span-4 relative aspect-[4/5] sm:aspect-auto rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
             src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1000&auto=format&fit=crop"
             alt="3D Watch CGI"
@@ -112,16 +94,10 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Sold out 500 limited timepieces in 48 hours.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 3: Brand Identity & Packaging (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8"
-        >
+        <div className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
             src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1000&auto=format&fit=crop"
             alt="Eco-Luxury Packaging"
@@ -146,16 +122,10 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Sustainable unboxing experiences with viral shelf appeal.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 4: Next.js Flagship (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8"
-        >
+        <div className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-lg group flex flex-col justify-between p-6 sm:p-8">
           <Image
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop"
             alt="Spatial Web Experience"
@@ -180,16 +150,10 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Awwwards-nominated fluid interactive experience.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 5: Agency Growth Acceleration Manifesto (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white"
-        >
+        <div className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white">
           <div className="flex items-center justify-between">
             <span className="px-3 py-1 rounded-full bg-[#88cc00]/20 border border-[#88cc00]/40 text-[#88cc00] text-[10px] font-mono uppercase font-bold tracking-widest">
               Growth Protocol
@@ -211,7 +175,7 @@ export default function MediaGrid() {
             <span>ROI-FOCUSED</span>
             <span className="text-[#88cc00] font-bold">100% ACCOUNTABLE</span>
           </div>
-        </motion.div>
+        </div>
 
       </div>
 

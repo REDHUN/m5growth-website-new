@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import confetti from "canvas-confetti";
-import { motion, AnimatePresence } from "framer-motion";
 import { 
   Send, 
   Sparkles, 
@@ -11,7 +10,8 @@ import {
   Mail, 
   MapPin, 
   CheckCircle2, 
-  ArrowRight
+  ArrowRight,
+  ShieldCheck
 } from "lucide-react";
 
 interface ContactSectionProps {
@@ -50,13 +50,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20" id="contact">
       
-      <motion.div 
-        initial={{ opacity: 0, y: 35 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.7 }}
-        className="rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden"
-      >
+      <div className="rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden">
         
         {/* Glow backdrop */}
         <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-96 h-96 bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
@@ -85,13 +79,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
             <div className="space-y-4 pt-4 border-t border-neutral-200">
               
               {/* WhatsApp Direct */}
-              <motion.a
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <a
                 href={`https://wa.me/919995551234?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black transition-all shadow-md"
+                className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black hover:scale-[1.01] transition-all shadow-md"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center">
@@ -103,7 +95,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   </div>
                 </div>
                 <ArrowRight className="w-4 h-4" />
-              </motion.a>
+              </a>
 
               {/* Direct Info List */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
@@ -141,137 +133,118 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
 
           {/* Right Column: Simplified Contact Form */}
           <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              {formSubmitted ? (
-                <motion.div 
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="py-12 flex flex-col items-center justify-center text-center space-y-4"
+            {formSubmitted ? (
+              <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#88cc00]/20 border border-[#88cc00] flex items-center justify-center text-[#659900]">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-black uppercase text-black">
+                  Message Transmitted!
+                </h3>
+                <p className="text-sm text-neutral-600 max-w-md">
+                  Thank you, <strong>{formData.name || "Partner"}</strong>. Our team has received your inquiry and will reach out to you shortly.
+                </p>
+                <button
+                  onClick={() => {
+                    setFormData({ name: "", email: "", phone: "", details: "" });
+                    setFormSubmitted(false);
+                  }}
+                  className="mt-4 px-6 py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-colors"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#88cc00]/20 border border-[#88cc00] flex items-center justify-center text-[#659900]">
-                    <CheckCircle2 className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-2xl sm:text-3xl font-black uppercase text-black">
-                    Message Transmitted!
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-5">
+                
+                <div className="space-y-1 pb-2 border-b border-neutral-100">
+                  <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
+                    Send Us a Message
                   </h3>
-                  <p className="text-sm text-neutral-600 max-w-md">
-                    Thank you, <strong>{formData.name || "Partner"}</strong>. Our team has received your inquiry and will reach out to you shortly.
+                  <p className="text-xs text-neutral-500 font-mono">
+                    Fill out the fields below and we&apos;ll get back to you immediately.
                   </p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setFormData({ name: "", email: "", phone: "", details: "" });
-                      setFormSubmitted(false);
-                    }}
-                    className="mt-4 px-6 py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-colors cursor-pointer"
-                  >
-                    Send Another Message
-                  </motion.button>
-                </motion.div>
-              ) : (
-                <motion.form 
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={handleSubmit} 
-                  className="space-y-5"
-                >
-                  
-                  <div className="space-y-1 pb-2 border-b border-neutral-100">
-                    <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
-                      Send Us a Message
-                    </h3>
-                    <p className="text-xs text-neutral-500 font-mono">
-                      Fill out the fields below and we&apos;ll get back to you immediately.
-                    </p>
-                  </div>
+                </div>
 
-                  {/* Name */}
+                {/* Name */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
+                    Your Name <span className="text-[#659900]">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Enter your full name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
+                  />
+                </div>
+
+                {/* Email & Mobile Number */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
-                      Your Name <span className="text-[#659900]">*</span>
+                      Email Address <span className="text-[#659900]">*</span>
                     </label>
                     <input
-                      type="text"
+                      type="email"
                       required
-                      placeholder="Enter your full name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="name@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
 
-                  {/* Email & Mobile Number */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
-                        Email Address <span className="text-[#659900]">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="name@example.com"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
-                      />
-                    </div>
-
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
-                        Mobile Number <span className="text-[#659900]">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="+91 999 555 1234"
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Tell Us / Message */}
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
-                      Tell Us
+                      Mobile Number <span className="text-[#659900]">*</span>
                     </label>
-                    <textarea
-                      rows={4}
-                      placeholder="Tell us about your project, goals, or requirements..."
-                      value={formData.details}
-                      onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors resize-none"
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 999 555 1234"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
+                </div>
 
-                  {/* Submit Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    type="submit"
-                    className="w-full py-4 rounded-xl bg-black text-white font-black uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black transition-all shadow-md mt-2 cursor-pointer"
-                  >
-                    <Send className="w-4 h-4" />
-                    <span>Submit Inquiry</span>
-                  </motion.button>
+                {/* Tell Us / Message */}
+                <div className="space-y-1.5">
+                  <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
+                    Tell Us
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Tell us about your project, goals, or requirements..."
+                    value={formData.details}
+                    onChange={(e) => setFormData({ ...formData, details: e.target.value })}
+                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors resize-none"
+                  />
+                </div>
 
-                  <p className="text-center text-[11px] text-neutral-500 font-mono">
-                    🔒 Strictly Confidential • Fast Response Guaranteed
-                  </p>
-                </motion.form>
-              )}
-            </AnimatePresence>
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-xl bg-black text-white font-black uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black hover:scale-[1.01] transition-all shadow-md mt-2"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>Submit Inquiry</span>
+                </button>
+
+                <p className="text-center text-[11px] text-neutral-500 font-mono">
+                  🔒 Strictly Confidential • Fast Response Guaranteed
+                </p>
+              </form>
+            )}
           </div>
 
         </div>
 
-      </motion.div>
+      </div>
     </section>
   );
 }
