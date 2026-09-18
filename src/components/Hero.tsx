@@ -86,15 +86,16 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
             </div>
           </div>
 
-          {/* Video Element with Auto Compression */}
+          {/* Video Element with Auto Compression & Instant Poster Frame */}
           <video
             ref={videoRef}
-            className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out"
+            className="w-full h-full object-cover opacity-95 group-hover:opacity-100 group-hover:scale-[1.01] transition-all duration-700 ease-out bg-black"
             autoPlay
             loop
             muted={isMuted}
             playsInline
             preload="metadata"
+            poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.jpg"
           >
             <source
               src="https://res.cloudinary.com/hh1m6ca1/video/upload/f_auto,q_auto/v1789712402/do_not_need_good_morning_pleas_1__gwr_video_mvp.mp4"

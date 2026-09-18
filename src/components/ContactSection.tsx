@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import confetti from "canvas-confetti";
 import { 
   Send, 
   Sparkles, 
@@ -27,11 +26,12 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
     details: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
 
     try {
+      const confetti = (await import("canvas-confetti")).default;
       confetti({
         particleCount: 140,
         spread: 90,

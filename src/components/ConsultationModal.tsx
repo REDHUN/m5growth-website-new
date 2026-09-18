@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import confetti from "canvas-confetti";
 import { X, Sparkles, Send, CheckCircle2 } from "lucide-react";
 
 interface ConsultationModalProps {
@@ -19,10 +18,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
     try {
+      const confetti = (await import("canvas-confetti")).default;
       confetti({
         particleCount: 110,
         spread: 75,
