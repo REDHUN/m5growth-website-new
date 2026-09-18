@@ -14,7 +14,7 @@ export default function MediaGrid() {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          videoRef.current?.play().catch(() => {});
+          videoRef.current?.play().catch(() => { });
         } else {
           videoRef.current?.pause();
         }
@@ -31,7 +31,7 @@ export default function MediaGrid() {
 
   return (
     <section ref={containerRef} className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8">
-      
+
       {/* Section Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200">
         <div className="space-y-2">
@@ -52,10 +52,10 @@ export default function MediaGrid() {
 
       {/* Asymmetric Agency Bento Showcase */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
-        
+
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
         <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group">
-          <video
+          {/* <video
             ref={videoRef}
             src={
               isVisible
@@ -69,7 +69,7 @@ export default function MediaGrid() {
             muted
             preload="none"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.jpg"
-          />
+          /> */}
 
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white pointer-events-none">
