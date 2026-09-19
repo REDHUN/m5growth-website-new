@@ -30,7 +30,7 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
 
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Case Studies", href: "#works" },
+    { name: "Gallery", href: "#gallery" },
     { name: "Protocol", href: "#process" },
     { name: "Impact", href: "#testimonials" },
     { name: "Contact", href: "#contact" },

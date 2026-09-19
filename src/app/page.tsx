@@ -58,10 +58,11 @@ export default function HomePage() {
           onSelectServiceForQuote={(title) => handleOpenConsultation(title)}
         />
 
-        {/* 5. Filterable Works / Case Studies Portfolio */}
+        {/* 5. Filterable Works / Case Studies Portfolio [COMMENTED OUT]
         <PortfolioSection
           onRequestQuoteWithContext={(context) => handleOpenConsultation(context)}
         />
+        */}
 
         {/* 6. 4-Step Process & Agency Stats */}
         <StatsAndProcess />

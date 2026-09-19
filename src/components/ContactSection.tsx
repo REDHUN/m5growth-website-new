@@ -115,11 +115,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 <motion.a
                   whileHover={{ scale: 1.02 }}
-                  href="mailto:growth@m5growth.com"
+                  href="mailto:growth@m5growth.in"
                   className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
                 >
                   <Mail className="w-4 h-4 text-[#659900]" />
-                  <span className="truncate">growth@m5growth.com</span>
+                  <span className="truncate">growth@m5growth.in</span>
                 </motion.a>
 
                 <motion.a

@@ -17,17 +17,19 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://m5growth.com"),
+  metadataBase: new URL("https://m5growth.in"),
   title: {
-    default: "M5 GROWTH | Full-Stack Digital Marketing & Growth Agency",
-    template: "%s | M5 GROWTH",
+    default: "M5 Digital Growth | Digital Marketing Agency in Kerala",
+    template: "%s | M5 Digital Growth",
   },
-  description: "M5 Growth is a premier full-stack digital growth agency based in Kerala, India. We engineer predictable revenue scale via Meta Ads, SEO, Next.js Web & Mobile App Development, Brand Architecture, and Commercial Video Production.",
+  description: "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
   keywords: [
+    "M5 Digital Growth",
     "M5 Growth",
     "Digital Marketing Agency Kerala",
     "Digital Marketing Agency Alappuzha",
     "Social Media Marketing",
+    "SEO Agency Kerala",
     "SEO agency India",
     "Meta Ads Agency",
     "Facebook Instagram Ads",
@@ -38,26 +40,27 @@ export const metadata: Metadata = {
     "Influencer Marketing",
     "Google Ads Search Marketing",
     "Performance Marketing Agency",
+    "Growth Strategy",
   ],
-  authors: [{ name: "M5 Growth", url: "https://m5growth.com" }],
-  creator: "M5 Growth",
-  publisher: "M5 Growth",
+  authors: [{ name: "M5 Digital Growth", url: "https://m5growth.in" }],
+  creator: "M5 Digital Growth",
+  publisher: "M5 Digital Growth",
   category: "Digital Marketing Agency",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "M5 GROWTH | Full-Stack Digital Marketing Agency",
-    description: "Strategy Today, Bigger Tomorrow. Growth Beyond Limits. We scale brands through high-performance advertising, Next.js web engineering, and commercial video production.",
-    url: "https://m5growth.com",
-    siteName: "M5 GROWTH",
-    locale: "en_US",
+    title: "M5 Digital Growth | Digital Marketing Agency in Kerala",
+    description: "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
+    url: "https://m5growth.in/",
+    siteName: "M5 Digital Growth",
+    locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "M5 GROWTH | Digital Marketing & Growth Agency",
-    description: "Strategy Today, Bigger Tomorrow. Growth Beyond Limits.",
+    title: "M5 Digital Growth | Digital Marketing Agency in Kerala",
+    description: "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
   },
   robots: {
     index: true,
@@ -83,15 +86,15 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "ProfessionalService",
-      "@id": "https://m5growth.com/#organization",
-      "name": "M5 Growth",
-      "legalName": "M5 Growth Digital Marketing Agency",
-      "url": "https://m5growth.com",
-      "logo": "https://m5growth.com/favicon.ico",
-      "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=75&w=800&auto=format&fit=crop",
-      "description": "Full-stack digital growth agency delivering performance Meta advertising, technical SEO, high-speed Next.js web development, and commercial video production.",
+      "@id": "https://m5growth.in/#organization",
+      "name": "M5 Digital Growth",
+      "legalName": "M5 Digital Growth Agency",
+      "url": "https://m5growth.in/",
+      "logo": "https://m5growth.in/icon.svg",
+      "image": "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_32_29_PM.png",
+      "description": "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
       "telephone": "+919778252136",
-      "email": "growth@m5growth.com",
+      "email": "growth@m5growth.in",
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -126,11 +129,11 @@ const jsonLd = {
     },
     {
       "@type": "WebSite",
-      "@id": "https://m5growth.com/#website",
-      "url": "https://m5growth.com",
-      "name": "M5 Growth",
+      "@id": "https://m5growth.in/#website",
+      "url": "https://m5growth.in/",
+      "name": "M5 Digital Growth",
       "publisher": {
-        "@id": "https://m5growth.com/#organization"
+        "@id": "https://m5growth.in/#organization"
       }
     }
   ]
@@ -146,9 +149,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
-        <link rel="dns-prefetch" href="https://images.unsplash.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://m5growth.com/sitemap.xml",
+    sitemap: "https://m5growth.in/sitemap.xml",
   };
 }

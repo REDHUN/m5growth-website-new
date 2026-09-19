@@ -28,6 +28,21 @@ const nextConfig: NextConfig = {
     ],
   },
   compress: true,
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "www.m5growth.in",
+          },
+        ],
+        destination: "https://m5growth.in/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

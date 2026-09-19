@@ -2,9 +2,9 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "M5 Growth | Digital Marketing & Growth Agency",
+    name: "M5 Digital Growth | Digital Marketing Agency in Kerala",
     short_name: "M5 Growth",
-    description: "Accelerate Brand Trajectory Beyond Limits. Full-Stack Performance Marketing, Next.js Web Engineering, SEO, Branding & Commercial Production.",
+    description: "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

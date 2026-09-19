@@ -39,8 +39,8 @@ export default function Footer() {
                 </a>
               </div>
               <div>
-                <a href="mailto:growth@m5growth.com" className="text-neutral-300 hover:text-[#88cc00] transition-colors">
-                  ✉️ growth@m5growth.com
+                <a href="mailto:growth@m5growth.in" className="text-neutral-300 hover:text-[#88cc00] transition-colors">
+                  ✉️ growth@m5growth.in
                 </a>
               </div>
             </div>
@@ -78,7 +78,7 @@ export default function Footer() {
               <ul className="space-y-2 text-xs text-neutral-400">
                 <li><Link href="#" className="hover:text-white transition-colors">Home</Link></li>
                 <li><Link href="#services" className="hover:text-white transition-colors">All 10 Services</Link></li>
-                <li><Link href="#works" className="hover:text-white transition-colors">Featured Case Studies</Link></li>
+                <li><Link href="#gallery" className="hover:text-white transition-colors">Creative Gallery</Link></li>
                 <li><Link href="#process" className="hover:text-white transition-colors">4-Phase Growth Protocol</Link></li>
                 <li><Link href="#testimonials" className="hover:text-white transition-colors">Founder Reviews</Link></li>
                 <li><Link href="#contact" className="hover:text-white transition-colors">Start a Project</Link></li>
