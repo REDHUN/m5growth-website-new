@@ -97,14 +97,14 @@ export default function MediaGrid() {
             loop
             muted={isMuted}
             preload="auto"
-            poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.jpg"
+            poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789804958/M_Growth___Video_White_Edi_gwr_video_mvp.jpg"
           >
             <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_1280,f_auto,q_auto/v1789804958/M_Growth___Video_White_Edi_gwr_video_mvp.mp4"
               type="video/mp4"
             />
             <source
-              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789804958/M_Growth___Video_White_Edi_gwr_video_mvp.mp4"
               type="video/mp4"
             />
           </video>
@@ -133,27 +133,6 @@ export default function MediaGrid() {
             </button>
           </div>
 
-          {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white pointer-events-none">
-            <div className="flex items-center justify-between">
-              <span className="px-3 py-1 rounded-full bg-[#88cc00] text-black text-[11px] font-black uppercase tracking-wider">
-                Commercial Production
-              </span>
-              <div className="flex items-center gap-2 text-xs font-mono text-white/80">
-                <span className="w-2 h-2 rounded-full bg-[#88cc00] animate-pulse" />
-                <span>4K MASTER REEL</span>
-              </div>
-            </div>
-
-            <div className="space-y-2 max-w-xl">
-              <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight group-hover:text-[#88cc00] transition-colors">
-                Cinematic Visual Storytelling
-              </h3>
-              <p className="text-xs sm:text-sm text-neutral-300 line-clamp-2">
-                Commercial-grade video campaigns, high-retention social reels, and 3D CGI product breakdowns designed to capture market share.
-              </p>
-            </div>
-          </div>
         </div>
 
         {/* Bento 2: 3D Product CGI (4 Cols) */}
