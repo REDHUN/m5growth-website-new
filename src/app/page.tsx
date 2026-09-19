@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import TextMarquee from "@/components/TextMarquee";
@@ -17,6 +17,19 @@ export default function HomePage() {
   const [consultationOpen, setConsultationOpen] = useState(false);
   const [presetService, setPresetService] = useState<string | undefined>(undefined);
 
+  useEffect(() => {
+    // Prevent browser from automatically animating smooth scrolls on reload
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "manual";
+      }
+      // If refreshed without specific hash, start at top
+      if (!window.location.hash) {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" as ScrollBehavior });
+      }
+    }
+  }, []);
+
   const handleOpenConsultation = (serviceTitle?: string) => {
     if (serviceTitle) {
       setPresetService(serviceTitle);
@@ -25,12 +38,12 @@ export default function HomePage() {
   };
 
   return (
-    <div className="relative min-h-screen bg-white text-[#0a0a0a] overflow-x-hidden selection:bg-[#88cc00] selection:text-black">
+    <div className="relative min-h-screen w-full max-w-full bg-white text-[#0a0a0a] overflow-x-hidden selection:bg-[#88cc00] selection:text-black">
       {/* Executive Agency Header */}
       <Header onOpenConsultation={() => handleOpenConsultation()} />
 
       {/* Main Page Content */}
-      <main className="flex flex-col">
+      <main className="flex flex-col w-full max-w-full overflow-x-hidden">
         {/* 1. Hero Section with Full-Width Video Showreel */}
         <Hero onOpenConsultation={() => handleOpenConsultation()} />
 

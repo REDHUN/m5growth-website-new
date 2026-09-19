@@ -31,8 +31,8 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-white pt-16 pb-12 px-4 sm:px-8 lg:px-12 xl:px-14 border-t border-neutral-800">
-      <div className="max-w-[1550px] mx-auto space-y-16">
+    <footer className="bg-black text-white pt-16 pb-12 px-4 sm:px-8 lg:px-12 xl:px-14 border-t border-neutral-800 overflow-hidden w-full max-w-full">
+      <div className="max-w-[1550px] mx-auto space-y-16 w-full min-w-0">
         
         {/* Top Live Studio World Clocks */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8 border-b border-neutral-800">
@@ -114,8 +114,8 @@ export default function Footer() {
         </div>
 
         {/* Massive Typography Wordmark Banner */}
-        <div className="pt-8 border-t border-neutral-800 flex flex-col items-center justify-center relative select-none">
-          <h1 className="text-[12vw] font-black uppercase tracking-tighter leading-none text-white/[0.06] hover:text-[#88cc00]/20 transition-colors duration-500">
+        <div className="pt-8 border-t border-neutral-800 flex flex-col items-center justify-center relative select-none overflow-hidden max-w-full">
+          <h1 className="text-3xl sm:text-6xl md:text-8xl lg:text-[11vw] font-black uppercase tracking-tighter leading-none text-white/[0.06] hover:text-[#88cc00]/20 transition-colors duration-500 text-center whitespace-nowrap">
             M5 GROWTH
           </h1>
         </div>

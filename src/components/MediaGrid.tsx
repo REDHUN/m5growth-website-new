@@ -5,32 +5,58 @@ import Image from "next/image";
 import { ArrowUpRight, Film, Sparkles } from "lucide-react";
 
 export default function MediaGrid() {
-  const [isVisible, setIsVisible] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Autoplay muted immediately
+    video.muted = true;
+    video.play().catch(() => {});
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          videoRef.current?.play().catch(() => {});
+          if (isPlaying) {
+            video.play().catch(() => {});
+          }
         } else {
-          videoRef.current?.pause();
+          video.pause();
         }
       },
-      { rootMargin: "200px" }
+      { threshold: 0.15 }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
+    observer.observe(video);
     return () => observer.disconnect();
-  }, []);
+  }, [isPlaying]);
+
+  const togglePlay = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        videoRef.current.play().catch(() => {});
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
 
   return (
-    <section ref={containerRef} className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8">
+    <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8 w-full max-w-full overflow-hidden">
       
       {/* Section Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200">
@@ -51,32 +77,51 @@ export default function MediaGrid() {
       </div>
 
       {/* Asymmetric Agency Bento Showcase */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 w-full max-w-full">
         
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
-        <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group">
+        <div className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 shadow-xl group w-full min-w-0">
           <video
             ref={videoRef}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out bg-black"
+            autoPlay
             playsInline
             loop
-            muted
-            preload="none"
+            muted={isMuted}
+            preload="auto"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.jpg"
           >
-            {isVisible && (
-              <>
-                <source
-                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-                  type="video/mp4"
-                />
-                <source
-                  src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
-                  type="video/mp4"
-                />
-              </>
-            )}
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/w_960,f_auto,q_auto/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
+            <source
+              src="https://res.cloudinary.com/hh1m6ca1/video/upload/v1789697681/https_cdnsanityio_files_h_gwr_video_mvp.mp4"
+              type="video/mp4"
+            />
           </video>
+
+          {/* Top Video Quick Controls */}
+          <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
+            <button
+              onClick={togglePlay}
+              className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#88cc00] hover:text-black transition-all shadow-md"
+              aria-label="Toggle Playback"
+            >
+              {isPlaying ? (
+                <span className="block w-2.5 h-2.5 bg-current rounded-xs" />
+              ) : (
+                <span className="block w-0 h-0 border-y-4 border-y-transparent border-l-6 border-l-current ml-0.5" />
+              )}
+            </button>
+            <button
+              onClick={toggleMute}
+              className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono hover:bg-[#88cc00] hover:text-black transition-all shadow-md"
+              aria-label="Toggle Sound"
+            >
+              {isMuted ? "UNMUTE" : "MUTED"}
+            </button>
+          </div>
 
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-6 sm:p-10 flex flex-col justify-between text-white pointer-events-none">

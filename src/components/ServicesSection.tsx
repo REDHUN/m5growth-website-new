@@ -47,7 +47,7 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20" id="services">
+    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20 w-full max-w-full overflow-hidden" id="services">
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200">
@@ -71,14 +71,14 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
       </div>
 
       {/* Services Grid (Bento Matrix) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
         {SERVICES_DATA.map((service, idx) => {
           const formattedIdx = String(idx + 1).padStart(2, "0");
           return (
             <div
               key={service.id}
               onClick={() => setSelectedService(service)}
-              className="group cursor-pointer relative rounded-3xl p-6 sm:p-7 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-6 shadow-sm hover:shadow-xl hover:-translate-y-1"
+              className="group cursor-pointer relative rounded-3xl p-5 sm:p-7 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-5 sm:space-y-6 shadow-sm hover:shadow-xl hover:-translate-y-1 w-full min-w-0"
             >
               {/* Top Row: Index & Category Pill */}
               <div className="flex justify-between items-center">
@@ -199,6 +199,7 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
                 src={selectedService.featuredMedia}
                 alt={selectedService.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 768px"
                 className="object-cover"
               />
             </div>

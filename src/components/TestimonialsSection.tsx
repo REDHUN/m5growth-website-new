@@ -19,9 +19,9 @@ export default function TestimonialsSection() {
   const current = TESTIMONIALS_DATA[currentIndex];
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20" id="testimonials">
+    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="testimonials">
       
-      <div className="rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden space-y-10">
+      <div className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden space-y-8 sm:space-y-10 w-full max-w-full min-w-0">
         
         {/* Background glow */}
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
@@ -81,6 +81,7 @@ export default function TestimonialsSection() {
                   src={current.avatar}
                   alt={current.author}
                   fill
+                  sizes="56px"
                   className="object-cover"
                 />
               </div>

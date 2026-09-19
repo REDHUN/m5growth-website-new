@@ -33,15 +33,15 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ${
           scrolled
-            ? "bg-white/90 backdrop-blur-xl border-b border-neutral-200/80 py-3.5 shadow-sm"
-            : "bg-transparent py-5"
+            ? "bg-white/95 backdrop-blur-xl border-b border-neutral-200/80 py-3 sm:py-3.5 shadow-xs"
+            : "bg-white/90 md:bg-transparent backdrop-blur-md md:backdrop-blur-none border-b border-neutral-200/50 md:border-transparent py-3.5 sm:py-5"
         }`}
       >
         <div className="max-w-[1550px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-14 flex items-center justify-between">
           
           {/* Brand Logo & Availability Pill */}
           <div className="flex items-center gap-4">
-            <Link href="#" className="flex items-center gap-2.5 group">
+            <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-8 h-8 rounded-lg bg-black text-[#88cc00] font-black flex items-center justify-center text-sm shadow-md group-hover:bg-[#88cc00] group-hover:text-black transition-all">
                 M5
               </div>

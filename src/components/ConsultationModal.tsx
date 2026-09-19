@@ -68,7 +68,7 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} suppressHydrationWarning className="space-y-4">
             <div className="space-y-1">
               <div className="flex items-center gap-1.5 text-xs text-[#659900] font-mono font-bold uppercase">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -88,10 +88,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <input
                   type="text"
                   required
+                  suppressHydrationWarning
                   placeholder="Enter your full name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black"
                 />
               </div>
 
@@ -100,10 +101,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <input
                   type="email"
                   required
+                  suppressHydrationWarning
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black"
                 />
               </div>
 
@@ -112,10 +114,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <input
                   type="tel"
                   required
+                  suppressHydrationWarning
                   placeholder="+91 999 555 1234"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black"
                 />
               </div>
 
@@ -123,10 +126,11 @@ export default function ConsultationModal({ isOpen, onClose }: ConsultationModal
                 <label className="text-xs font-bold uppercase tracking-wider text-neutral-700">Tell Us</label>
                 <textarea
                   rows={3}
+                  suppressHydrationWarning
                   placeholder="Tell us about your project or goals..."
                   value={details}
                   onChange={(e) => setDetails(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black resize-none"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black resize-none"
                 />
               </div>
             </div>

@@ -15,22 +15,22 @@ export default function StatsAndProcess() {
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-16 scroll-mt-20" id="process">
+    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-12 sm:space-y-16 scroll-mt-20 overflow-hidden w-full max-w-full" id="process">
       
       {/* 4-Phase Growth Protocol Box */}
-      <div className="relative rounded-3xl sm:rounded-[2.5rem] p-8 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-12">
+      <div className="relative rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-8 sm:space-y-12 w-full max-w-full min-w-0">
         
         {/* Glow ambient */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-full max-w-[500px] h-[350px] sm:h-[500px] bg-[#88cc00]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none" />
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-8 border-b border-neutral-200 relative z-10">
-          <div className="space-y-3">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-neutral-200 relative z-10 min-w-0 w-full">
+          <div className="space-y-2 sm:space-y-3 min-w-0">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
               <Zap className="w-3.5 h-3.5" />
               <span>THE M5 GROWTH PROTOCOL</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl xl:text-6xl font-black uppercase tracking-tight text-black">
+            <h2 className="text-2xl sm:text-5xl xl:text-6xl font-black uppercase tracking-tight text-black break-words">
               Systematic Scale. <br />
               <span className="text-neutral-500">
                 Predictable Growth.
@@ -44,11 +44,11 @@ export default function StatsAndProcess() {
         </div>
 
         {/* 4-Phase Process Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10 w-full max-w-full">
           {AGENCY_PROCESS.map((item, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-6 group shadow-sm hover:shadow-md hover:-translate-y-1"
+              className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-4 sm:space-y-6 group shadow-sm hover:shadow-md hover:-translate-y-1 w-full min-w-0"
             >
               <div className="flex justify-between items-center">
                 <span className="text-3xl font-black text-[#659900] font-mono">

@@ -48,14 +48,14 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
   );
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20" id="contact">
+    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="contact">
       
-      <div className="rounded-3xl sm:rounded-[2.5rem] p-6 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden">
+      <div className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0">
         
         {/* Glow backdrop */}
-        <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-96 h-96 bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-full max-w-96 h-96 bg-[#88cc00]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-14 relative z-10 w-full max-w-full">
           
           {/* Left Column: Direct Info & Locations */}
           <div className="lg:col-span-5 space-y-8 flex flex-col justify-between">
@@ -155,7 +155,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} suppressHydrationWarning className="space-y-5">
                 
                 <div className="space-y-1 pb-2 border-b border-neutral-100">
                   <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black">
@@ -174,10 +174,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   <input
                     type="text"
                     required
+                    suppressHydrationWarning
                     placeholder="Enter your full name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
+                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black transition-colors"
                   />
                 </div>
 
@@ -190,10 +191,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                     <input
                       type="email"
                       required
+                      suppressHydrationWarning
                       placeholder="name@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
+                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
 
@@ -204,10 +206,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                     <input
                       type="tel"
                       required
+                      suppressHydrationWarning
                       placeholder="+91 999 555 1234"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors"
+                      className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black transition-colors"
                     />
                   </div>
                 </div>
@@ -219,10 +222,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   </label>
                   <textarea
                     rows={4}
+                    suppressHydrationWarning
                     placeholder="Tell us about your project, goals, or requirements..."
                     value={formData.details}
                     onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-sm focus:outline-none focus:border-black transition-colors resize-none"
+                    className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black transition-colors resize-none"
                   />
                 </div>
 

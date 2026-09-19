@@ -56,6 +56,7 @@ export default function CaseStudyModal({ project, onClose, onRequestSimilarProje
             src={project.coverImage}
             alt={project.title}
             fill
+            sizes="(max-width: 768px) 100vw, 896px"
             className="object-cover"
           />
         </div>
@@ -109,6 +110,7 @@ export default function CaseStudyModal({ project, onClose, onRequestSimilarProje
                     src={img}
                     alt={`${project.title} gallery ${idx + 1}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>

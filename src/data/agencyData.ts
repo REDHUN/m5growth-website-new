@@ -192,7 +192,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     category: "Branding",
     year: "2025",
     impact: "+320% Revenue Scale",
-    coverImage: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=75&w=800&auto=format&fit=crop",
+    coverImage: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=75&w=800&auto=format&fit=crop",
     summary: "Complete brand transformation from an emerging boutique into an international luxury pret-a-porter label with bespoke digital presence.",
     challenge: "Baleni needed to transition from regional retail to high-ticket international e-commerce without losing its artisanal heritage.",
     solution: "We engineered a monolithic serif typography identity, cinematic editorial campaigns, and a lightning-fast headless Next.js shopping portal.",
