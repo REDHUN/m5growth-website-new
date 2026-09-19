@@ -60,14 +60,9 @@ export default function StatsAndProcess() {
         {/* 4-Phase Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10 w-full max-w-full">
           {AGENCY_PROCESS.map((item, idx) => (
-            <motion.div
+            <div
               key={idx}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-colors flex flex-col justify-between space-y-4 sm:space-y-6 group shadow-sm hover:shadow-xl w-full min-w-0"
+              className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4 sm:space-y-6 group shadow-xs hover:shadow-lg w-full min-w-0"
             >
               <div className="flex justify-between items-center">
                 <span className="text-3xl font-black text-[#659900] font-mono group-hover:scale-110 transition-transform origin-left">
@@ -90,7 +85,7 @@ export default function StatsAndProcess() {
               <div className="pt-2 border-t border-neutral-100 flex items-center gap-1 text-[11px] font-mono text-neutral-400 group-hover:text-black transition-colors">
                 <span>Phase {idx + 1} Deliverable Ready</span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

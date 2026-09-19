@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { TESTIMONIALS_DATA } from "@/data/agencyData";
-import { ChevronLeft, ChevronRight, Star, ShieldCheck, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, ShieldCheck } from "lucide-react";
 
 export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,10 +41,10 @@ export default function TestimonialsSection() {
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="testimonials">
       
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden space-y-8 sm:space-y-10 w-full max-w-full min-w-0"
       >
         
@@ -101,7 +101,7 @@ export default function TestimonialsSection() {
             >
               
               {/* Main Large Quote */}
-              <div className="lg:col-span-8 space-y-6">
+              <div className="lg:col-span-12 space-y-6 max-w-4xl">
                 <div className="flex items-center gap-1 text-[#88cc00]">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} className="w-4 h-4 fill-current animate-in zoom-in-50" />
@@ -113,7 +113,7 @@ export default function TestimonialsSection() {
                 </p>
               </div>
 
-              {/* Author Card & Metrics */}
+              {/* [TEMPORARILY COMMENTED OUT - UNCOMMENT WHEN READY]
               <div className="lg:col-span-4 p-6 rounded-2xl bg-white border border-neutral-200 shadow-sm space-y-4 hover:shadow-md transition-shadow">
                 <div className="flex items-center gap-4">
                   <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#88cc00] shrink-0 shadow-sm">
@@ -129,15 +129,9 @@ export default function TestimonialsSection() {
                   <div className="space-y-0.5">
                     <h4 className="text-base font-bold text-black">{current.author}</h4>
                     <p className="text-xs text-neutral-500">{current.role}</p>
-                    <a
-                      href={current.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-[#659900] hover:underline inline-flex items-center gap-1 font-bold"
-                    >
-                      <span>{current.company}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+                    <span className="text-xs text-[#659900] font-bold font-mono block">
+                      {current.company}
+                    </span>
                   </div>
                 </div>
 
@@ -148,6 +142,7 @@ export default function TestimonialsSection() {
                   </span>
                 </div>
               </div>
+              */}
 
             </motion.div>
           </AnimatePresence>

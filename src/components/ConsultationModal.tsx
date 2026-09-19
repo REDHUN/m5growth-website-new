@@ -140,7 +140,7 @@ export default function ConsultationModal({ isOpen, onClose, presetService }: Co
                       type="tel"
                       required
                       suppressHydrationWarning
-                      placeholder="+91 999 555 1234"
+                      placeholder="+91 9778252136"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black"

@@ -7,7 +7,6 @@ import TextMarquee from "@/components/TextMarquee";
 import MediaGrid from "@/components/MediaGrid";
 import ServicesSection from "@/components/ServicesSection";
 import PortfolioSection from "@/components/PortfolioSection";
-import ClientsMarquee from "@/components/ClientsMarquee";
 import StatsAndProcess from "@/components/StatsAndProcess";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
@@ -64,10 +63,7 @@ export default function HomePage() {
           onRequestQuoteWithContext={(context) => handleOpenConsultation(context)}
         />
 
-        {/* 6. Dynamic 3-Layer Capabilities & Ecosystem Ticker */}
-        <ClientsMarquee />
-
-        {/* 7. 4-Step Process & Agency Stats */}
+        {/* 6. 4-Step Process & Agency Stats */}
         <StatsAndProcess />
 
         {/* 8. Client Testimonials */}

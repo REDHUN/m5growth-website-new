@@ -1,114 +1,104 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowUp, Sparkles, Heart, Globe, ArrowUpRight } from "lucide-react";
+import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
-  const [timeState, setTimeState] = useState({
-    calicut: "",
-    dubai: "",
-    newYork: "",
-  });
-
-  useEffect(() => {
-    const updateClocks = () => {
-      const now = new Date();
-      setTimeState({
-        calicut: now.toLocaleTimeString("en-US", { timeZone: "Asia/Kolkata", hour12: false, hour: "2-digit", minute: "2-digit" }),
-        dubai: now.toLocaleTimeString("en-US", { timeZone: "Asia/Dubai", hour12: false, hour: "2-digit", minute: "2-digit" }),
-        newYork: now.toLocaleTimeString("en-US", { timeZone: "America/New_York", hour12: false, hour: "2-digit", minute: "2-digit" }),
-      });
-    };
-
-    updateClocks();
-    const interval = setInterval(updateClocks, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="bg-black text-white pt-16 pb-12 px-4 sm:px-8 lg:px-12 xl:px-14 border-t border-neutral-800 overflow-hidden w-full max-w-full">
-      <div className="max-w-[1550px] mx-auto space-y-16 w-full min-w-0">
-        
-        {/* Top Live Studio World Clocks */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pb-8 border-b border-neutral-800">
-          <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#88cc00] animate-pulse" />
-              <span className="text-xs uppercase font-mono text-neutral-400">Calicut HQ Studio (IST)</span>
-            </div>
-            <span className="text-sm font-mono font-bold text-white">{timeState.calicut || "11:45"}</span>
-          </div>
+      <div className="max-w-[1550px] mx-auto space-y-12 sm:space-y-16 w-full min-w-0">
 
-          <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-neutral-600" />
-              <span className="text-xs uppercase font-mono text-neutral-400">Dubai Hub (GST)</span>
-            </div>
-            <span className="text-sm font-mono font-bold text-white">{timeState.dubai || "10:15"}</span>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-neutral-900 border border-neutral-800 flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-neutral-600" />
-              <span className="text-xs uppercase font-mono text-neutral-400">New York (EST)</span>
-            </div>
-            <span className="text-sm font-mono font-bold text-white">{timeState.newYork || "02:15"}</span>
-          </div>
-        </div>
-
-        {/* Middle Navigation & Agency Links */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+        {/* Agency Footer Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-8">
           
-          <div className="col-span-2 space-y-4">
+          {/* Col 1: Brand Info & Direct Contact (4 Cols) */}
+          <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#88cc00] text-black font-black flex items-center justify-center text-xs">
+              <div className="w-8 h-8 rounded-lg bg-[#88cc00] text-black font-black flex items-center justify-center text-xs shadow-sm">
                 M5
               </div>
               <span className="text-xl font-black tracking-tight text-white">M5 GROWTH</span>
             </div>
-            <p className="text-xs text-neutral-400 max-w-sm leading-relaxed font-light">
-              Full-Stack Digital Growth Agency. We help ambitious brands achieve extraordinary scale through creative direction, performance marketing, and Next.js engineering.
+
+            <p className="text-xs sm:text-sm text-neutral-400 max-w-sm leading-relaxed font-light">
+              Full-Stack Digital Growth Agency. We partner with ambitious brands to accelerate revenue through performance advertising, SEO, high-speed web engineering, and commercial video production.
             </p>
+
+            <div className="space-y-2 pt-2 border-t border-neutral-900 text-xs font-mono text-neutral-400">
+              <div className="flex items-center gap-2 text-white">
+                <span className="w-2 h-2 rounded-full bg-[#88cc00]" />
+                <span>Muhamma, Alappuzha, Kerala</span>
+              </div>
+              <div>
+                <a href="tel:+919778252136" className="text-neutral-300 hover:text-[#88cc00] transition-colors">
+                  📞 +91 9778252136
+                </a>
+              </div>
+              <div>
+                <a href="mailto:growth@m5growth.com" className="text-neutral-300 hover:text-[#88cc00] transition-colors">
+                  ✉️ growth@m5growth.com
+                </a>
+              </div>
+            </div>
+
             <div className="text-[11px] font-mono text-[#88cc00] uppercase tracking-wider font-bold">
               STRATEGY TODAY • BIGGER TOMORROW
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">Agency Navigation</h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li><Link href="#" className="hover:text-white transition-colors">Home</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">10 Growth Services</Link></li>
-              <li><Link href="#works" className="hover:text-white transition-colors">Selected Case Studies</Link></li>
-              <li><Link href="#process" className="hover:text-white transition-colors">M5 Protocol</Link></li>
-              <li><Link href="#testimonials" className="hover:text-white transition-colors">Client Reviews</Link></li>
-            </ul>
+          {/* Col 2: The 10 Official Growth Services (5 Cols) */}
+          <div className="lg:col-span-5 space-y-4">
+            <h4 className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">
+              10 Growth Services
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs text-neutral-400">
+              <Link href="#services" className="hover:text-white transition-colors">Social Media Marketing</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Graphic Design & Branding</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Search Engine SEO</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Website Development</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Meta Ads (FB & IG)</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Mobile App Development</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Content Marketing & Copy</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Video Production & Editing</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Influencer Marketing</Link>
+              <Link href="#services" className="hover:text-white transition-colors">Analytics & Reporting</Link>
+            </div>
           </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">Core Offerings</h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li><Link href="#services" className="hover:text-white transition-colors">Performance Meta Ads</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">Search Engine SEO</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">Next.js Web & Mobile Apps</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">Brand & Visual Identity</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">Commercial 4K Video</Link></li>
-            </ul>
-          </div>
+          {/* Col 3: Navigation & Direct Social (3 Cols) */}
+          <div className="lg:col-span-3 space-y-6">
+            <div className="space-y-3">
+              <h4 className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">
+                Agency Navigation
+              </h4>
+              <ul className="space-y-2 text-xs text-neutral-400">
+                <li><Link href="#" className="hover:text-white transition-colors">Home</Link></li>
+                <li><Link href="#services" className="hover:text-white transition-colors">All 10 Services</Link></li>
+                <li><Link href="#works" className="hover:text-white transition-colors">Featured Case Studies</Link></li>
+                <li><Link href="#process" className="hover:text-white transition-colors">4-Phase Growth Protocol</Link></li>
+                <li><Link href="#testimonials" className="hover:text-white transition-colors">Founder Reviews</Link></li>
+                <li><Link href="#contact" className="hover:text-white transition-colors">Start a Project</Link></li>
+              </ul>
+            </div>
 
-          <div className="space-y-3">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">Global Connect</h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1"><span>Instagram</span> <ArrowUpRight className="w-3 h-3" /></a></li>
-              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1"><span>LinkedIn</span> <ArrowUpRight className="w-3 h-3" /></a></li>
-              <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1"><span>Facebook</span> <ArrowUpRight className="w-3 h-3" /></a></li>
-              <li><a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors inline-flex items-center gap-1"><span>YouTube</span> <ArrowUpRight className="w-3 h-3" /></a></li>
-            </ul>
+            <div className="space-y-2 pt-2 border-t border-neutral-900">
+              <span className="text-[11px] font-mono uppercase text-neutral-500 font-bold block">Social Channels</span>
+              <div className="flex flex-wrap gap-2 text-xs text-neutral-400">
+                <a href="https://wa.me/919778252136" target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-[#88cc00] hover:text-black transition-colors font-mono inline-flex items-center gap-1">
+                  <span>WhatsApp</span> <ArrowUpRight className="w-3 h-3" />
+                </a>
+                <a href="https://www.instagram.com/m5_growth?stkn=MWN1ZXM2amN4MnhqZA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-[#88cc00] hover:text-black transition-colors font-mono inline-flex items-center gap-1">
+                  <span>Instagram</span> <ArrowUpRight className="w-3 h-3" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-[#88cc00] hover:text-black transition-colors font-mono inline-flex items-center gap-1">
+                  <span>LinkedIn</span> <ArrowUpRight className="w-3 h-3" />
+                </a>
+              </div>
+            </div>
           </div>
 
         </div>
@@ -122,16 +112,16 @@ export default function Footer() {
 
         {/* Bottom Credits & Back to Top */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-neutral-500 pt-4 border-t border-neutral-800">
-          <p>© {new Date().getFullYear()} M5 Growth Digital Marketing Agency. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} M5 Growth Digital Agency. All Rights Reserved.</p>
           
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 text-neutral-400">
-              Growth Beyond <span className="text-[#88cc00]">Limits</span>
+            <span className="flex items-center gap-1 text-neutral-400 font-mono text-[11px]">
+              Muhamma, Alappuzha • <span className="text-[#88cc00]">Growth Beyond Limits</span>
             </span>
 
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1.5 p-2 px-3.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors"
+              className="flex items-center gap-1.5 p-2 px-3.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer"
             >
               <span>Top</span>
               <ArrowUp className="w-3.5 h-3.5" />

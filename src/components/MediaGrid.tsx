@@ -86,13 +86,8 @@ export default function MediaGrid() {
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 w-full max-w-full">
         
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          whileHover={{ y: -4 }}
-          className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-[#88cc00]/80 shadow-xl group w-full min-w-0 transition-all duration-500"
+        <div 
+          className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-[#88cc00]/80 shadow-xl group w-full min-w-0 transition-all duration-500 hover:-translate-y-1"
         >
           <video
             ref={videoRef}
@@ -116,11 +111,10 @@ export default function MediaGrid() {
 
           {/* Top Video Quick Controls */}
           <div className="absolute top-4 right-4 z-20 flex items-center gap-2">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+            <button
+              type="button"
               onClick={togglePlay}
-              className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#88cc00] hover:text-black transition-all shadow-md cursor-pointer"
+              className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-[#88cc00] hover:text-black transition-all shadow-md cursor-pointer hover:scale-110 active:scale-95"
               aria-label="Toggle Playback"
             >
               {isPlaying ? (
@@ -128,16 +122,15 @@ export default function MediaGrid() {
               ) : (
                 <span className="block w-0 h-0 border-y-4 border-y-transparent border-l-6 border-l-current ml-0.5" />
               )}
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            </button>
+            <button
+              type="button"
               onClick={toggleMute}
-              className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono hover:bg-[#88cc00] hover:text-black transition-all shadow-md cursor-pointer"
+              className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/20 text-white text-[10px] font-mono hover:bg-[#88cc00] hover:text-black transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
               aria-label="Toggle Sound"
             >
               {isMuted ? "UNMUTE" : "MUTED"}
-            </motion.button>
+            </button>
           </div>
 
           {/* Vignette Overlay */}
@@ -161,16 +154,11 @@ export default function MediaGrid() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 2: 3D Product CGI (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          whileHover={{ y: -4 }}
-          className="md:col-span-4 relative aspect-[4/5] sm:aspect-auto rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500"
+        <div 
+          className="md:col-span-4 relative aspect-[4/5] sm:aspect-auto rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1"
         >
           <Image
             src="https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=75&w=600&auto=format&fit=crop"
@@ -197,16 +185,11 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Sold out 500 limited timepieces in 48 hours.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 3: Brand Identity & Packaging (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          whileHover={{ y: -4 }}
-          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500"
+        <div 
+          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1"
         >
           <Image
             src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=75&w=600&auto=format&fit=crop"
@@ -233,16 +216,11 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Sustainable unboxing experiences with viral shelf appeal.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 4: Next.js Flagship (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          whileHover={{ y: -4 }}
-          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500"
+        <div 
+          className="md:col-span-4 relative aspect-square md:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg group flex flex-col justify-between p-6 sm:p-8 transition-all duration-500 hover:-translate-y-1"
         >
           <Image
             src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=75&w=600&auto=format&fit=crop"
@@ -269,16 +247,11 @@ export default function MediaGrid() {
             </h4>
             <p className="text-xs text-neutral-300">Awwwards-nominated fluid interactive experience.</p>
           </div>
-        </motion.div>
+        </div>
 
         {/* Bento 5: Agency Growth Acceleration Manifesto (4 Cols) */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.25 }}
-          whileHover={{ y: -4 }}
-          className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 hover:border-[#88cc00] p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white transition-all duration-500"
+        <div 
+          className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 hover:border-[#88cc00] p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white transition-all duration-500 hover:-translate-y-1"
         >
           <div className="flex items-center justify-between">
             <span className="px-3 py-1 rounded-full bg-[#88cc00]/20 border border-[#88cc00]/40 text-[#88cc00] text-[10px] font-mono uppercase font-bold tracking-widest">
@@ -301,7 +274,7 @@ export default function MediaGrid() {
             <span>ROI-FOCUSED</span>
             <span className="text-[#88cc00] font-bold">100% ACCOUNTABLE</span>
           </div>
-        </motion.div>
+        </div>
 
       </div>
 

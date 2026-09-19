@@ -1,16 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SERVICES_DATA, ServiceItem } from "@/data/agencyData";
 import { 
-  Sparkles, 
   ArrowRight, 
-  X, 
-  CheckCircle2, 
   Zap, 
-  ArrowUpRight, 
   Layers, 
   Megaphone, 
   Search, 
@@ -21,7 +17,9 @@ import {
   Smartphone, 
   Video, 
   UserCheck, 
-  BarChart3 
+  BarChart3,
+  Plus,
+  Minus
 } from "lucide-react";
 
 interface ServicesSectionProps {
@@ -29,7 +27,31 @@ interface ServicesSectionProps {
 }
 
 export default function ServicesSection({ onSelectServiceForQuote }: ServicesSectionProps) {
-  const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
+  // Single active service open at a time
+  const [openServiceId, setOpenServiceId] = useState<string | null>(null);
+  const cardRefs = useRef<{ [key: string]: HTMLDivElement | null }>({});
+
+  const toggleService = (id: string) => {
+    const isOpening = openServiceId !== id;
+    setOpenServiceId((prev) => (prev === id ? null : id));
+
+    if (isOpening) {
+      // Smoothly align the opened service card into the ideal viewing position below header
+      setTimeout(() => {
+        const el = cardRefs.current[id];
+        if (el) {
+          const headerOffset = 90; // 90px below fixed navbar
+          const elementPosition = el.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        }
+      }, 180);
+    }
+  };
 
   const getServiceIcon = (iconName: string) => {
     switch (iconName) {
@@ -50,13 +72,13 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20 w-full max-w-full overflow-hidden" id="services">
       
-      {/* Header */}
+      {/* Section Header */}
       <motion.div 
-        initial={{ opacity: 0, y: 25 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200"
+        transition={{ duration: 0.5 }}
+        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-6 border-b border-neutral-200"
       >
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
@@ -66,85 +88,112 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
 
           <h2 className="text-3xl sm:text-5xl xl:text-6xl font-black uppercase tracking-tight text-black">
             10 Growth Services. <br />
-            <span className="text-neutral-500">
+            <span className="text-neutral-400">
               One Unified Agency.
             </span>
           </h2>
         </div>
 
-        <p className="text-neutral-500 text-xs sm:text-sm max-w-sm sm:text-right font-mono">
-          Comprehensive multidisciplinary capabilities engineered for measurable scale.
+        <p className="text-neutral-500 text-xs sm:text-sm max-w-sm md:text-right font-mono">
+          Click any discipline to explore deliverables, strategy scope, and proven impact metrics.
         </p>
       </motion.div>
 
-      {/* Services Grid (Bento Matrix) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
+      {/* Clean Rounded Card Accordion List (2 columns on tablet & desktop when space is available) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 w-full items-start">
         {SERVICES_DATA.map((service, idx) => {
+          const isOpen = openServiceId === service.id;
           const formattedIdx = String(idx + 1).padStart(2, "0");
-          return (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
-              whileHover={{ y: -6, boxShadow: "0 20px 40px -15px rgba(0,0,0,0.12)" }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setSelectedService(service)}
-              className="group cursor-pointer relative rounded-3xl p-5 sm:p-7 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-5 sm:space-y-6 shadow-sm w-full min-w-0"
-            >
-              {/* Top Row: Index & Category Pill */}
-              <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center group-hover:bg-[#88cc00] group-hover:text-black group-hover:rotate-6 transition-all duration-300">
-                  {getServiceIcon(service.iconName)}
-                </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-neutral-400 font-bold">
+          return (
+            <div
+              key={service.id}
+              ref={(el) => { cardRefs.current[service.id] = el; }}
+              className={`rounded-3xl border transition-all duration-300 overflow-hidden bg-white shadow-xs ${
+                isOpen 
+                  ? "border-black shadow-md ring-1 ring-black/5" 
+                  : "border-neutral-200 hover:border-neutral-400 hover:shadow-sm"
+              }`}
+            >
+              {/* Row Header (Clickable) */}
+              <button
+                type="button"
+                onClick={() => toggleService(service.id)}
+                className={`w-full py-5 px-5 sm:px-6 flex items-center justify-between gap-3 text-left cursor-pointer transition-colors ${
+                  isOpen ? "bg-neutral-50/70" : "hover:bg-neutral-50/50"
+                }`}
+                aria-expanded={isOpen}
+              >
+                {/* Left: Number, Icon, Title, Tag */}
+                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+                  <span className="text-xs sm:text-sm font-mono text-neutral-400 font-bold w-5 shrink-0">
                     {formattedIdx}
                   </span>
-                  <span className="px-2.5 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono uppercase text-neutral-700">
-                    {service.tag}
-                  </span>
+
+                  <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 border transition-all ${
+                    isOpen 
+                      ? "bg-black text-[#88cc00] border-black" 
+                      : "bg-neutral-100 text-neutral-700 border-neutral-200/80 group-hover:bg-[#88cc00] group-hover:text-black"
+                  }`}>
+                    {getServiceIcon(service.iconName)}
+                  </div>
+
+                  <div className="space-y-0.5 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h3 className={`text-sm sm:text-base md:text-lg font-bold uppercase tracking-tight transition-colors ${
+                        isOpen ? "text-[#659900]" : "text-black"
+                      }`}>
+                        {service.title}
+                      </h3>
+                      <span className="px-2 py-0.5 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono uppercase text-neutral-600 font-medium shrink-0">
+                        {service.tag}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
 
-              {/* Middle Content */}
-              <div className="space-y-2.5">
-                <h3 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-black group-hover:text-[#659900] transition-colors">
-                  {service.title}
-                </h3>
+                {/* Right: Plus/Minus Toggle */}
+                <div className="flex items-center gap-2 shrink-0">
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
+                    isOpen 
+                      ? "bg-black text-white border-black" 
+                      : "bg-white text-neutral-500 border-neutral-300 hover:border-black hover:text-black"
+                  }`}>
+                    {isOpen ? (
+                      <Minus className="w-4 h-4" />
+                    ) : (
+                      <Plus className="w-4 h-4" />
+                    )}
+                  </div>
+                </div>
+              </button>
 
-                <p className="text-xs sm:text-sm text-neutral-600 font-normal leading-relaxed line-clamp-3">
-                  {service.shortDesc}
-                </p>
-              </div>
-
-              {/* Deliverable Tags Strip */}
-              <div className="pt-2 flex flex-wrap gap-1.5">
-                {service.deliverables.slice(0, 2).map((del, dIdx) => (
-                  <span
-                    key={dIdx}
-                    className="px-2 py-0.5 rounded-md bg-neutral-100 text-[10px] text-neutral-600 font-mono group-hover:bg-neutral-200/80 transition-colors"
+              {/* Expanded Content Drawer */}
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    key="content"
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: "easeInOut" }}
+                    className="overflow-hidden bg-neutral-50/40"
                   >
-                    • {del}
-                  </span>
-                ))}
-              </div>
-
-              {/* Bottom Action & Metric */}
-              <div className="pt-4 border-t border-neutral-100 flex items-center justify-between text-xs">
-                <span className="font-mono text-[#659900] font-bold text-[11px]">
-                  {service.metric}
-                </span>
-
-                <div className="flex items-center gap-1.5 text-neutral-500 group-hover:text-black font-semibold transition-colors">
-                  <span>View Details</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#659900] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                </div>
-              </div>
-
-            </motion.div>
+                    <div className="px-5 sm:px-6 pb-6 pt-4 border-t border-neutral-200/80">
+                      {/* 2-Line Description */}
+                      <div className="space-y-1">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#659900] font-mono">
+                          {service.tagline}
+                        </span>
+                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal line-clamp-2">
+                          {service.shortDesc}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           );
         })}
       </div>
@@ -154,8 +203,8 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
         initial={{ opacity: 0, scale: 0.98 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="p-8 sm:p-10 rounded-3xl bg-neutral-950 text-white flex flex-col sm:flex-row justify-between items-center gap-6 shadow-xl relative overflow-hidden"
+        transition={{ duration: 0.5 }}
+        className="p-6 sm:p-10 rounded-3xl bg-neutral-950 text-white flex flex-col sm:flex-row justify-between items-center gap-6 shadow-xl relative overflow-hidden"
       >
         <div className="absolute top-0 right-0 w-80 h-80 bg-[#88cc00]/10 rounded-full blur-3xl pointer-events-none" />
         
@@ -163,7 +212,7 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
           <span className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">
             TAILORED GROWTH PACKAGE
           </span>
-          <h3 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+          <h3 className="text-xl sm:text-3xl font-black uppercase tracking-tight text-white">
             Need a Multi-Service Growth Retainer?
           </h3>
           <p className="text-xs sm:text-sm text-neutral-300 max-w-xl font-light">
@@ -181,104 +230,6 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
           <ArrowRight className="w-4 h-4" />
         </motion.button>
       </motion.div>
-
-      {/* Service Detail Modal */}
-      <AnimatePresence>
-        {selectedService && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
-          >
-            <motion.div 
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white text-black w-full max-w-3xl rounded-3xl p-6 sm:p-10 border border-neutral-200 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6"
-            >
-              
-              <button
-                onClick={() => setSelectedService(null)}
-                className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 text-neutral-500 hover:text-black hover:bg-neutral-200 transition-colors cursor-pointer"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-black text-white text-xs font-black uppercase tracking-wider">
-                  {selectedService.tag}
-                </span>
-                <span className="text-xs text-neutral-500 font-mono">
-                  {selectedService.metric}
-                </span>
-                <span className="text-xs text-[#659900] font-mono font-bold">
-                  • {selectedService.tagline}
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
-                  {selectedService.title}
-                </h3>
-                <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
-                  {selectedService.fullDesc}
-                </p>
-              </div>
-
-              {/* Featured Image Banner */}
-              <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border border-neutral-200">
-                <Image
-                  src={selectedService.featuredMedia}
-                  alt={selectedService.title}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 768px"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Deliverables List */}
-              <div className="space-y-3">
-                <h4 className="text-xs uppercase font-mono tracking-widest text-[#659900] font-bold">
-                  Key Deliverables & Capabilities
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                  {selectedService.deliverables.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80">
-                      <CheckCircle2 className="w-4 h-4 text-[#659900] shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Bar */}
-              <div className="pt-4 border-t border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-4">
-                <span className="text-xs text-neutral-500">
-                  Dedicated Lead Strategist • Real-Time Dashboards
-                </span>
-
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  onClick={() => {
-                    const title = selectedService.title;
-                    setSelectedService(null);
-                    onSelectServiceForQuote?.(title);
-                  }}
-                  className="w-full sm:w-auto bg-black text-white px-6 py-3 rounded-full font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black transition-colors shadow-md cursor-pointer"
-                >
-                  <span>Request {selectedService.title} Proposal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </motion.button>
-              </div>
-
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
     </section>
   );

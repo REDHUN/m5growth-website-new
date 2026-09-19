@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X, ArrowUpRight, Sparkles, ArrowRight, Activity } from "lucide-react";
 
 interface HeaderProps {
@@ -11,6 +12,13 @@ interface HeaderProps {
 export default function Header({ onOpenConsultation }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +38,12 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
 
   return (
     <>
+      {/* Precision Scroll Progress Indicator */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-[2.5px] bg-[#88cc00] origin-left z-50 pointer-events-none shadow-[0_0_8px_#88cc00]"
+      />
+
       <header
         className={`fixed top-0 left-0 right-0 z-40 w-full transition-all duration-300 ${
           scrolled

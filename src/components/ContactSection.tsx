@@ -51,10 +51,10 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="contact">
       
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0"
       >
         
@@ -94,7 +94,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
               <motion.a
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                href={`https://wa.me/919995551234?text=${whatsappMessage}`}
+                href={`https://wa.me/919778252136?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black transition-all shadow-md group"
@@ -124,23 +124,22 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
 
                 <motion.a
                   whileHover={{ scale: 1.02 }}
-                  href="tel:+919995551234"
+                  href="tel:+919778252136"
                   className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
                 >
                   <Phone className="w-4 h-4 text-[#659900]" />
-                  <span>+91 999 555 1234</span>
+                  <span>+91 9778252136</span>
                 </motion.a>
               </div>
 
-              {/* Office Location Hubs */}
+              {/* Office Location */}
               <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5 shadow-sm">
                 <div className="flex items-center gap-2 text-xs font-mono text-[#659900] uppercase font-bold">
                   <MapPin className="w-3.5 h-3.5" />
-                  <span>M5 Growth Studios</span>
+                  <span>M5 Growth</span>
                 </div>
-                <p className="text-xs text-neutral-600 leading-relaxed font-normal">
-                  <strong className="text-black font-semibold">HQ Studio:</strong> Cyberpark, Kozhikode, Kerala 673001<br />
-                  <strong className="text-black font-semibold">Regional Presence:</strong> Dubai, UAE • Bangalore, India
+                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed font-medium">
+                  Muhamma, Alappuzha, Kerala
                 </p>
               </div>
 
@@ -236,7 +235,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                       type="tel"
                       required
                       suppressHydrationWarning
-                      placeholder="+91 999 555 1234"
+                      placeholder="+91 9778252136"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full px-4 py-3.5 rounded-xl bg-neutral-50 border border-neutral-200 text-black placeholder-neutral-400 text-base sm:text-sm focus:outline-none focus:border-black transition-colors"
