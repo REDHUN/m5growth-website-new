@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { SERVICES_DATA, ServiceItem } from "@/data/agencyData";
 import { 
   Sparkles, 
@@ -50,7 +51,13 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20 w-full max-w-full overflow-hidden" id="services">
       
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200">
+      <motion.div 
+        initial={{ opacity: 0, y: 25 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pb-6 border-b border-neutral-200"
+      >
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
             <Layers className="w-3.5 h-3.5" />
@@ -68,21 +75,27 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
         <p className="text-neutral-500 text-xs sm:text-sm max-w-sm sm:text-right font-mono">
           Comprehensive multidisciplinary capabilities engineered for measurable scale.
         </p>
-      </div>
+      </motion.div>
 
       {/* Services Grid (Bento Matrix) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
         {SERVICES_DATA.map((service, idx) => {
           const formattedIdx = String(idx + 1).padStart(2, "0");
           return (
-            <div
+            <motion.div
               key={service.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.5, delay: (idx % 3) * 0.1 }}
+              whileHover={{ y: -6, boxShadow: "0 20px 40px -15px rgba(0,0,0,0.12)" }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => setSelectedService(service)}
-              className="group cursor-pointer relative rounded-3xl p-5 sm:p-7 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-5 sm:space-y-6 shadow-sm hover:shadow-xl hover:-translate-y-1 w-full min-w-0"
+              className="group cursor-pointer relative rounded-3xl p-5 sm:p-7 bg-white hover:bg-neutral-50/70 border border-neutral-200 hover:border-black transition-all duration-300 flex flex-col justify-between space-y-5 sm:space-y-6 shadow-sm w-full min-w-0"
             >
               {/* Top Row: Index & Category Pill */}
               <div className="flex justify-between items-center">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center group-hover:bg-[#88cc00] group-hover:text-black transition-colors">
+                <div className="w-10 h-10 rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center group-hover:bg-[#88cc00] group-hover:text-black group-hover:rotate-6 transition-all duration-300">
                   {getServiceIcon(service.iconName)}
                 </div>
 
@@ -112,7 +125,7 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
                 {service.deliverables.slice(0, 2).map((del, dIdx) => (
                   <span
                     key={dIdx}
-                    className="px-2 py-0.5 rounded-md bg-neutral-100 text-[10px] text-neutral-600 font-mono"
+                    className="px-2 py-0.5 rounded-md bg-neutral-100 text-[10px] text-neutral-600 font-mono group-hover:bg-neutral-200/80 transition-colors"
                   >
                     • {del}
                   </span>
@@ -127,18 +140,26 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
 
                 <div className="flex items-center gap-1.5 text-neutral-500 group-hover:text-black font-semibold transition-colors">
                   <span>View Details</span>
-                  <ArrowUpRight className="w-4 h-4 text-[#659900]" />
+                  <ArrowUpRight className="w-4 h-4 text-[#659900] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
       {/* Bottom Growth Strategy Strip */}
-      <div className="p-8 sm:p-10 rounded-3xl bg-neutral-950 text-white flex flex-col sm:flex-row justify-between items-center gap-6 shadow-xl">
-        <div className="space-y-1 text-center sm:text-left">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="p-8 sm:p-10 rounded-3xl bg-neutral-950 text-white flex flex-col sm:flex-row justify-between items-center gap-6 shadow-xl relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 w-80 h-80 bg-[#88cc00]/10 rounded-full blur-3xl pointer-events-none" />
+        
+        <div className="space-y-1 text-center sm:text-left relative z-10">
           <span className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">
             TAILORED GROWTH PACKAGE
           </span>
@@ -150,97 +171,114 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
           </p>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={() => onSelectServiceForQuote?.("All-in-One Growth Stack")}
-          className="bg-[#88cc00] text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs hover:bg-white hover:scale-105 transition-all shadow-md shrink-0 flex items-center gap-2"
+          className="bg-[#88cc00] text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs hover:bg-white transition-all shadow-md shrink-0 flex items-center gap-2 cursor-pointer relative z-10"
         >
           <span>Request Custom Growth Deck</span>
           <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
+        </motion.button>
+      </motion.div>
 
       {/* Service Detail Modal */}
-      {selectedService && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 animate-in fade-in duration-200">
-          <div className="bg-white text-black w-full max-w-3xl rounded-3xl p-6 sm:p-10 border border-neutral-200 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6">
-            
-            <button
-              onClick={() => setSelectedService(null)}
-              className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 text-neutral-500 hover:text-black hover:bg-neutral-200 transition-colors"
-              aria-label="Close modal"
+      <AnimatePresence>
+        {selectedService && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4"
+          >
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white text-black w-full max-w-3xl rounded-3xl p-6 sm:p-10 border border-neutral-200 shadow-2xl relative max-h-[90vh] overflow-y-auto space-y-6"
             >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-black text-white text-xs font-black uppercase tracking-wider">
-                {selectedService.tag}
-              </span>
-              <span className="text-xs text-neutral-500 font-mono">
-                {selectedService.metric}
-              </span>
-              <span className="text-xs text-[#659900] font-mono font-bold">
-                • {selectedService.tagline}
-              </span>
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
-                {selectedService.title}
-              </h3>
-              <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
-                {selectedService.fullDesc}
-              </p>
-            </div>
-
-            {/* Featured Image Banner */}
-            <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border border-neutral-200">
-              <Image
-                src={selectedService.featuredMedia}
-                alt={selectedService.title}
-                fill
-                sizes="(max-width: 768px) 100vw, 768px"
-                className="object-cover"
-              />
-            </div>
-
-            {/* Deliverables List */}
-            <div className="space-y-3">
-              <h4 className="text-xs uppercase font-mono tracking-widest text-[#659900] font-bold">
-                Key Deliverables & Capabilities
-              </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {selectedService.deliverables.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80">
-                    <CheckCircle2 className="w-4 h-4 text-[#659900] shrink-0" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Action Bar */}
-            <div className="pt-4 border-t border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-4">
-              <span className="text-xs text-neutral-500">
-                Dedicated Lead Strategist • Real-Time Dashboards
-              </span>
-
+              
               <button
-                onClick={() => {
-                  const title = selectedService.title;
-                  setSelectedService(null);
-                  onSelectServiceForQuote?.(title);
-                }}
-                className="w-full sm:w-auto bg-black text-white px-6 py-3 rounded-full font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black transition-colors shadow-md"
+                onClick={() => setSelectedService(null)}
+                className="absolute top-6 right-6 p-2 rounded-full bg-neutral-100 text-neutral-500 hover:text-black hover:bg-neutral-200 transition-colors cursor-pointer"
+                aria-label="Close modal"
               >
-                <span>Request {selectedService.title} Proposal</span>
-                <ArrowRight className="w-4 h-4" />
+                <X className="w-5 h-5" />
               </button>
-            </div>
 
-          </div>
-        </div>
-      )}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-black text-white text-xs font-black uppercase tracking-wider">
+                  {selectedService.tag}
+                </span>
+                <span className="text-xs text-neutral-500 font-mono">
+                  {selectedService.metric}
+                </span>
+                <span className="text-xs text-[#659900] font-mono font-bold">
+                  • {selectedService.tagline}
+                </span>
+              </div>
+
+              <div className="space-y-2">
+                <h3 className="text-3xl sm:text-4xl font-black uppercase tracking-tight text-black">
+                  {selectedService.title}
+                </h3>
+                <p className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal">
+                  {selectedService.fullDesc}
+                </p>
+              </div>
+
+              {/* Featured Image Banner */}
+              <div className="relative w-full h-48 sm:h-64 rounded-2xl overflow-hidden border border-neutral-200">
+                <Image
+                  src={selectedService.featuredMedia}
+                  alt={selectedService.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Deliverables List */}
+              <div className="space-y-3">
+                <h4 className="text-xs uppercase font-mono tracking-widest text-[#659900] font-bold">
+                  Key Deliverables & Capabilities
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {selectedService.deliverables.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-2 text-sm text-neutral-800 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80">
+                      <CheckCircle2 className="w-4 h-4 text-[#659900] shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Bar */}
+              <div className="pt-4 border-t border-neutral-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span className="text-xs text-neutral-500">
+                  Dedicated Lead Strategist • Real-Time Dashboards
+                </span>
+
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  onClick={() => {
+                    const title = selectedService.title;
+                    setSelectedService(null);
+                    onSelectServiceForQuote?.(title);
+                  }}
+                  className="w-full sm:w-auto bg-black text-white px-6 py-3 rounded-full font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black transition-colors shadow-md cursor-pointer"
+                >
+                  <span>Request {selectedService.title} Proposal</span>
+                  <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              </div>
+
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </section>
   );

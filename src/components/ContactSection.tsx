@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { 
   Send, 
   Sparkles, 
@@ -9,8 +10,7 @@ import {
   Mail, 
   MapPin, 
   CheckCircle2, 
-  ArrowRight,
-  ShieldCheck
+  ArrowRight
 } from "lucide-react";
 
 interface ContactSectionProps {
@@ -23,7 +23,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
     name: "",
     email: "",
     phone: "",
-    details: "",
+    details: initialService ? `Interested in ${initialService}` : "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +50,13 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
   return (
     <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="contact">
       
-      <div className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.7 }}
+        className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0"
+      >
         
         {/* Glow backdrop */}
         <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-full max-w-96 h-96 bg-[#88cc00]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none" />
@@ -58,7 +64,13 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-14 relative z-10 w-full max-w-full">
           
           {/* Left Column: Direct Info & Locations */}
-          <div className="lg:col-span-5 space-y-8 flex flex-col justify-between">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="lg:col-span-5 space-y-8 flex flex-col justify-between"
+          >
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-[#659900] text-xs font-mono uppercase tracking-widest font-bold w-fit">
                 <Sparkles className="w-3.5 h-3.5" />
@@ -79,14 +91,16 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
             <div className="space-y-4 pt-4 border-t border-neutral-200">
               
               {/* WhatsApp Direct */}
-              <a
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 href={`https://wa.me/919995551234?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black hover:scale-[1.01] transition-all shadow-md"
+                className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black transition-all shadow-md group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center group-hover:scale-110 transition-transform">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div className="text-left">
@@ -94,26 +108,28 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                     <div className="text-[11px] font-medium opacity-80">Connect directly with Senior Growth Lead</div>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </motion.a>
 
               {/* Direct Info List */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
                   href="mailto:growth@m5growth.com"
                   className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
                 >
                   <Mail className="w-4 h-4 text-[#659900]" />
-                  <span>growth@m5growth.com</span>
-                </a>
+                  <span className="truncate">growth@m5growth.com</span>
+                </motion.a>
 
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
                   href="tel:+919995551234"
                   className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
                 >
                   <Phone className="w-4 h-4 text-[#659900]" />
                   <span>+91 999 555 1234</span>
-                </a>
+                </motion.a>
               </div>
 
               {/* Office Location Hubs */}
@@ -129,30 +145,43 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
               </div>
 
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Simplified Contact Form */}
-          <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-center">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-center"
+          >
             {formSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
-                <div className="w-16 h-16 rounded-full bg-[#88cc00]/20 border border-[#88cc00] flex items-center justify-center text-[#659900]">
+                <motion.div 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="w-16 h-16 rounded-full bg-[#88cc00]/20 border border-[#88cc00] flex items-center justify-center text-[#659900]"
+                >
                   <CheckCircle2 className="w-8 h-8" />
-                </div>
+                </motion.div>
                 <h3 className="text-2xl sm:text-3xl font-black uppercase text-black">
                   Message Transmitted!
                 </h3>
                 <p className="text-sm text-neutral-600 max-w-md">
                   Thank you, <strong>{formData.name || "Partner"}</strong>. Our team has received your inquiry and will reach out to you shortly.
                 </p>
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => {
                     setFormData({ name: "", email: "", phone: "", details: "" });
                     setFormSubmitted(false);
                   }}
-                  className="mt-4 px-6 py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-colors"
+                  className="mt-4 px-6 py-2.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-colors cursor-pointer"
                 >
                   Send Another Message
-                </button>
+                </motion.button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} suppressHydrationWarning className="space-y-5">
@@ -231,24 +260,26 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                 </div>
 
                 {/* Submit Button */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-black text-white font-black uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black hover:scale-[1.01] transition-all shadow-md mt-2"
+                  className="w-full py-4 rounded-xl bg-black text-white font-black uppercase tracking-wider text-xs sm:text-sm flex items-center justify-center gap-2 hover:bg-[#88cc00] hover:text-black transition-colors shadow-md mt-2 cursor-pointer"
                 >
                   <Send className="w-4 h-4" />
                   <span>Submit Inquiry</span>
-                </button>
+                </motion.button>
 
                 <p className="text-center text-[11px] text-neutral-500 font-mono">
                   🔒 Strictly Confidential • Fast Response Guaranteed
                 </p>
               </form>
             )}
-          </div>
+          </motion.div>
 
         </div>
 
-      </div>
+      </motion.div>
     </section>
   );
 }
