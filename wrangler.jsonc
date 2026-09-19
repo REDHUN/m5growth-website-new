@@ -13,7 +13,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "m5growth-new"
+      "service": "m5growth-website-new"
     }
   ],
   "images": {
