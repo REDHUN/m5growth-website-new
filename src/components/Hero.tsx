@@ -117,16 +117,18 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-2 sm:pt-3 w-full sm:w-auto px-4 sm:px-0"
         >
-          <motion.button
+          <motion.a
             whileHover={{ scale: 1.05, boxShadow: "0 20px 35px -10px rgba(136, 204, 0, 0.4)" }}
             whileTap={{ scale: 0.96 }}
-            onClick={onOpenConsultation}
+            href="https://wa.me/919778252136?text=Hello%20M5%20Growth%20Team!%20I%27d%20like%20to%20book%20a%20free%20consultation."
+            target="_blank"
+            rel="noopener noreferrer"
             className="w-full sm:w-auto bg-black text-white px-7 py-3.5 sm:px-9 sm:py-4 rounded-full font-extrabold text-xs sm:text-sm uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-all duration-300 shadow-xl flex items-center justify-center gap-2.5 group cursor-pointer"
           >
             <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#88cc00] group-hover:text-black group-hover:rotate-12 transition-all" />
             <span>Book Free Consultation</span>
             <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1.5 transition-transform" />
-          </motion.button>
+          </motion.a>
 
           <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>
             <Link

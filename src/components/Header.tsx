@@ -86,23 +86,27 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
 
           {/* Right Action Trigger */}
           <div className="hidden md:flex items-center gap-3">
-            <button
-              onClick={onOpenConsultation}
+            <a
+              href="https://wa.me/919778252136?text=Hello%20M5%20Growth%20Team!%20I%27d%20like%20to%20book%20a%20strategy%20call."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative inline-flex items-center gap-2 bg-black text-white px-5 py-2.5 rounded-full font-extrabold text-xs uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-all duration-300 shadow-md hover:scale-[1.02]"
             >
               <span>Book Strategy Call</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              onClick={onOpenConsultation}
+            <a
+              href="https://wa.me/919778252136?text=Hello%20M5%20Growth%20Team!%20I%27d%20like%20to%20book%20a%20strategy%20call."
+              target="_blank"
+              rel="noopener noreferrer"
               className="bg-black text-white px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#88cc00] hover:text-black transition-colors"
             >
               Consult
-            </button>
+            </a>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Menu"
@@ -140,16 +144,16 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
           </div>
 
           <div className="space-y-4 pt-6 border-t border-neutral-200">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenConsultation?.();
-              }}
+            <a
+              href="https://wa.me/919778252136?text=Hello%20M5%20Growth%20Team!%20I%27d%20like%20to%20book%20a%20strategy%20call."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileMenuOpen(false)}
               className="w-full py-4 rounded-xl bg-black text-white font-extrabold uppercase tracking-wider text-xs flex items-center justify-center gap-2 shadow-lg hover:bg-[#88cc00] hover:text-black transition-colors"
             >
               <Sparkles className="w-4 h-4" />
               <span>Schedule Strategy Call</span>
-            </button>
+            </a>
             <p className="text-center text-[11px] text-neutral-400 font-mono">
               M5 GROWTH • STRATEGY TODAY, BIGGER TOMORROW
             </p>

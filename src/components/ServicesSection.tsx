@@ -214,15 +214,17 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
           </p>
         </div>
 
-        <motion.button
+        <motion.a
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}
-          onClick={() => onSelectServiceForQuote?.("Custom Digital Growth Package")}
+          href="https://wa.me/919778252136?text=Hello%20M5%20Growth%20Team!%20I%27d%20like%20to%20discuss%20a%20project."
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-black text-white hover:bg-[#88cc00] hover:text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs transition-all duration-300 shadow-md shrink-0 flex items-center gap-2 cursor-pointer relative z-10"
         >
           <span>Discuss Your Project</span>
           <ArrowRight className="w-4 h-4" />
-        </motion.button>
+        </motion.a>
       </motion.div>
 
     </section>

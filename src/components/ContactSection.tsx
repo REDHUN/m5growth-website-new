@@ -61,92 +61,97 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
         {/* Glow backdrop */}
         <div className="absolute top-1/2 -left-32 -translate-y-1/2 w-full max-w-96 h-96 bg-[#88cc00]/10 rounded-full blur-[100px] sm:blur-[140px] pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-14 relative z-10 w-full max-w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 xl:gap-14 relative z-10 w-full max-w-full items-center">
           
-          {/* Left Column: Direct Info & Locations */}
+          {/* Left Column: Direct Info & Pitch */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
-            className="lg:col-span-5 space-y-8 flex flex-col justify-between transform-gpu"
+            className="lg:col-span-5 space-y-5 flex flex-col justify-center transform-gpu"
           >
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-[#659900] text-xs font-mono uppercase tracking-widest font-bold w-fit">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>LET&apos;S TALK GROWTH</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-black leading-tight">
-                Scale Your Brand <br />
-                <span className="text-[#659900]">With Precision.</span>
-              </h2>
-
-              <p className="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
-                Ready to accelerate your revenue and establish market leadership? Leave your contact details below and our partners will reach out within 24 hours.
-              </p>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-[#659900] text-xs font-mono uppercase tracking-widest font-bold w-fit">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>LET&apos;S TALK GROWTH</span>
             </div>
 
-            {/* Quick Contact & WhatsApp Pill */}
-            <div className="space-y-4 pt-4 border-t border-neutral-200">
-              
-              {/* WhatsApp Direct */}
+            <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-black leading-tight">
+              Scale Your Brand <br />
+              <span className="text-[#659900]">With Precision.</span>
+            </h2>
+
+            <p className="text-sm sm:text-base text-neutral-600 font-normal leading-relaxed">
+              Ready to accelerate your revenue and establish market leadership? Reach out to our team directly via WhatsApp, email, or phone.
+            </p>
+          </motion.div>
+
+          {/* Right Column: Quick Contact & WhatsApp Pill & Location */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+            className="lg:col-span-7 space-y-4 flex flex-col justify-center transform-gpu"
+          >
+            {/* WhatsApp Direct */}
+            <motion.a
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              href={`https://wa.me/919778252136?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-between p-4 rounded-2xl bg-white border border-neutral-200 hover:border-black text-black font-extrabold transition-all shadow-xs hover:shadow-md group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <div className="text-left">
+                  <div className="text-sm font-black uppercase tracking-tight text-black">Direct WhatsApp Priority Line</div>
+                  <div className="text-[11px] font-medium text-neutral-500">Connect directly with Senior Growth Lead</div>
+                </div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" />
+            </motion.a>
+
+            {/* Direct Info List */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <motion.a
                 whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                href={`https://wa.me/919778252136?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-neutral-200 hover:border-black text-black font-extrabold transition-all shadow-xs hover:shadow-md group"
+                href="mailto:growth@m5growth.in"
+                className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <MessageSquare className="w-5 h-5" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-sm font-black uppercase tracking-tight text-black">Direct WhatsApp Priority Line</div>
-                    <div className="text-[11px] font-medium text-neutral-500">Connect directly with Senior Growth Lead</div>
-                  </div>
-                </div>
-                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" />
+                <Mail className="w-4 h-4 text-[#659900]" />
+                <span className="truncate">growth@m5growth.in</span>
               </motion.a>
 
-              {/* Direct Info List */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  href="mailto:growth@m5growth.in"
-                  className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
-                >
-                  <Mail className="w-4 h-4 text-[#659900]" />
-                  <span className="truncate">growth@m5growth.in</span>
-                </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.02 }}
+                href="tel:+919778252136"
+                className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
+              >
+                <Phone className="w-4 h-4 text-[#659900]" />
+                <span>+91 9778252136</span>
+              </motion.a>
+            </div>
 
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  href="tel:+919778252136"
-                  className="p-3.5 rounded-xl bg-white border border-neutral-200 hover:border-black transition-colors flex items-center gap-3 text-xs text-neutral-800 shadow-sm"
-                >
-                  <Phone className="w-4 h-4 text-[#659900]" />
-                  <span>+91 9778252136</span>
-                </motion.a>
+            {/* Office Location */}
+            <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2 text-xs font-mono text-[#659900] uppercase font-bold">
+                <MapPin className="w-3.5 h-3.5" />
+                <span>M5 Growth</span>
               </div>
-
-              {/* Office Location */}
-              <div className="p-4 rounded-2xl bg-white border border-neutral-200 space-y-1.5 shadow-sm">
-                <div className="flex items-center gap-2 text-xs font-mono text-[#659900] uppercase font-bold">
-                  <MapPin className="w-3.5 h-3.5" />
-                  <span>M5 Growth</span>
-                </div>
-                <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed font-medium">
-                  Muhamma, Alappuzha, Kerala
-                </p>
-              </div>
-
+              <p className="text-xs sm:text-sm text-neutral-700 leading-relaxed font-medium">
+                Muhamma, Alappuzha, Kerala
+              </p>
             </div>
           </motion.div>
 
-          {/* Right Column: Simplified Contact Form */}
+          {/* ========================================================================= */}
+          {/* CONTACT FORM (TEMPORARILY HIDDEN - UNCOMMENT WHEN READY TO IMPLEMENT)      */}
+          {/* ========================================================================= */}
+          {/*
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -194,7 +199,6 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   </p>
                 </div>
 
-                {/* Name */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
                     Your Name <span className="text-[#659900]">*</span>
@@ -210,7 +214,6 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   />
                 </div>
 
-                {/* Email & Mobile Number */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
@@ -243,7 +246,6 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   </div>
                 </div>
 
-                {/* Tell Us / Message */}
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-neutral-800">
                     Tell Us
@@ -258,7 +260,6 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                   />
                 </div>
 
-                {/* Submit Button */}
                 <motion.button
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
@@ -275,6 +276,7 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
               </form>
             )}
           </motion.div>
+          */}
 
         </div>
 

@@ -75,9 +75,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icon-192x192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icon-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: "/apple-icon",
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
   },
 };
 
@@ -90,8 +97,13 @@ const jsonLd = {
       "name": "M5 Digital Growth",
       "legalName": "M5 Digital Growth Agency",
       "url": "https://m5growth.in/",
-      "logo": "https://m5growth.in/icon.svg",
-      "image": "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_32_29_PM.png",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://m5growth.in/logo.png",
+        "width": 1024,
+        "height": 1024
+      },
+      "image": "https://m5growth.in/logo.png",
       "description": "M5 Digital Growth is a Kerala-based digital marketing agency specializing in performance marketing, SEO, social media, branding, websites, apps and growth strategy.",
       "telephone": "+919778252136",
       "email": "growth@m5growth.in",
@@ -147,7 +159,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={jakarta.variable} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon-48x48.png" type="image/png" sizes="48x48" />
+        <link rel="icon" href="/icon-96x96.png" type="image/png" sizes="96x96" />
+        <link rel="icon" href="/icon-192x192.png" type="image/png" sizes="192x192" />
+        <link rel="icon" href="/icon-512x512.png" type="image/png" sizes="512x512" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <script
