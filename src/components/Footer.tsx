@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUp, ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
@@ -9,20 +10,27 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-black text-white pt-16 pb-12 px-4 sm:px-8 lg:px-12 xl:px-14 border-t border-neutral-800 overflow-hidden w-full max-w-full">
-      <div className="max-w-[1550px] mx-auto space-y-12 sm:space-y-16 w-full min-w-0">
+    <footer className="bg-black text-white pt-8 sm:pt-10 md:pt-12 pb-6 sm:pb-8 px-4 sm:px-8 lg:px-12 xl:px-14 border-t border-neutral-800 overflow-hidden w-full max-w-full">
+      <div className="max-w-[1550px] mx-auto space-y-6 sm:space-y-8 w-full min-w-0">
 
         {/* Agency Footer Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 sm:gap-8">
           
           {/* Col 1: Brand Info & Direct Contact (4 Cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#88cc00] text-black font-black flex items-center justify-center text-xs shadow-sm">
-                M5
+            <Link href="/" className="flex items-center gap-3 group inline-flex">
+              <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-black shadow-md border border-neutral-800 shrink-0 group-hover:scale-105 transition-transform">
+                <Image
+                  src="/logo.jpg"
+                  alt="M5 Growth Logo"
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <span className="text-xl font-black tracking-tight text-white">M5 GROWTH</span>
-            </div>
+              <span className="text-xl font-black tracking-tight text-white group-hover:text-[#88cc00] transition-colors">
+                M5 GROWTH
+              </span>
+            </Link>
 
             <p className="text-xs sm:text-sm text-neutral-400 max-w-sm leading-relaxed font-light">
               Full-Stack Digital Growth Agency. We partner with ambitious brands to accelerate revenue through performance advertising, SEO, high-speed web engineering, and commercial video production.

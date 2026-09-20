@@ -64,13 +64,10 @@ export default function HomePage() {
         />
         */}
 
-        {/* 6. 4-Step Process & Agency Stats */}
+        {/* 6. 4-Step Growth Protocol */}
         <StatsAndProcess />
 
-        {/* 8. Client Testimonials */}
-        <TestimonialsSection />
-
-        {/* 9. Interactive Project Brief Builder & Contact */}
+        {/* 7. Interactive Project Brief Builder & Contact */}
         <ContactSection initialService={presetService} />
       </main>
 

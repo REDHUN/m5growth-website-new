@@ -38,21 +38,21 @@ export default function TestimonialsSection() {
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="testimonials">
+    <section className="py-8 sm:py-12 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="testimonials">
       
       <motion.div 
         initial={{ opacity: 0, y: 25 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden space-y-8 sm:space-y-10 w-full max-w-full min-w-0"
+        className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8 xl:p-10 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden space-y-6 sm:space-y-8 w-full max-w-full min-w-0"
       >
         
         {/* Background glow */}
         <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-[#88cc00]/10 rounded-full blur-[140px] pointer-events-none" />
 
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-neutral-200 relative z-10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-neutral-200 relative z-10">
           <div className="space-y-1">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
               <ShieldCheck className="w-4 h-4" />

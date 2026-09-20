@@ -48,14 +48,14 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
   );
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="contact">
+    <section className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto scroll-mt-20 overflow-hidden w-full max-w-full" id="contact">
       
       <motion.div 
-        initial={{ opacity: 0, y: 25 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0"
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8 xl:p-10 bg-neutral-50 border border-neutral-200 shadow-sm relative overflow-hidden w-full max-w-full min-w-0 transform-gpu"
       >
         
         {/* Glow backdrop */}
@@ -65,11 +65,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
           
           {/* Left Column: Direct Info & Locations */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-5 space-y-8 flex flex-col justify-between"
+            transition={{ duration: 0.5, delay: 0.08, ease: "easeOut" }}
+            className="lg:col-span-5 space-y-8 flex flex-col justify-between transform-gpu"
           >
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-[#659900] text-xs font-mono uppercase tracking-widest font-bold w-fit">
@@ -97,18 +97,18 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
                 href={`https://wa.me/919778252136?text=${whatsappMessage}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-between p-4 rounded-2xl bg-black text-white font-extrabold hover:bg-[#88cc00] hover:text-black transition-all shadow-md group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-white border border-neutral-200 hover:border-black text-black font-extrabold transition-all shadow-xs hover:shadow-md group"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#88cc00] text-black flex items-center justify-center group-hover:scale-110 transition-transform">
                     <MessageSquare className="w-5 h-5" />
                   </div>
                   <div className="text-left">
-                    <div className="text-sm font-black uppercase tracking-tight">Direct WhatsApp Priority Line</div>
-                    <div className="text-[11px] font-medium opacity-80">Connect directly with Senior Growth Lead</div>
+                    <div className="text-sm font-black uppercase tracking-tight text-black">Direct WhatsApp Priority Line</div>
+                    <div className="text-[11px] font-medium text-neutral-500">Connect directly with Senior Growth Lead</div>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4 text-neutral-400 group-hover:text-black group-hover:translate-x-1 transition-all" />
               </motion.a>
 
               {/* Direct Info List */}
@@ -148,11 +148,11 @@ export default function ContactSection({ initialService }: ContactSectionProps) 
 
           {/* Right Column: Simplified Contact Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-center"
+            transition={{ duration: 0.5, delay: 0.12, ease: "easeOut" }}
+            className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-center transform-gpu"
           >
             {formSubmitted ? (
               <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">

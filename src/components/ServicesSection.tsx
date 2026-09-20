@@ -70,15 +70,15 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-10 scroll-mt-20 w-full max-w-full overflow-hidden" id="services">
+    <section className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-5 sm:space-y-7 scroll-mt-20 w-full max-w-full overflow-hidden" id="services">
       
       {/* Section Header */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-6 border-b border-neutral-200"
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 pb-4 border-b border-neutral-200 transform-gpu"
       >
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
@@ -100,133 +100,127 @@ export default function ServicesSection({ onSelectServiceForQuote }: ServicesSec
       </motion.div>
 
       {/* Clean Rounded Card Accordion List (2 columns on tablet & desktop when space is available) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5 w-full items-start">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-2 w-full items-start">
         {SERVICES_DATA.map((service, idx) => {
           const isOpen = openServiceId === service.id;
           const formattedIdx = String(idx + 1).padStart(2, "0");
 
           return (
-            <div
+            <motion.div
               key={service.id}
               ref={(el) => { cardRefs.current[service.id] = el; }}
-              className={`rounded-3xl border transition-all duration-300 overflow-hidden bg-white shadow-xs ${
-                isOpen 
-                  ? "border-black shadow-md ring-1 ring-black/5" 
-                  : "border-neutral-200 hover:border-neutral-400 hover:shadow-sm"
-              }`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: (idx % 2) * 0.08, ease: "easeOut" }}
+              className="border-b border-neutral-200/80 hover:border-neutral-400 transition-colors group bg-transparent transform-gpu"
             >
               {/* Row Header (Clickable) */}
               <button
                 type="button"
                 onClick={() => toggleService(service.id)}
-                className={`w-full py-5 px-5 sm:px-6 flex items-center justify-between gap-3 text-left cursor-pointer transition-colors ${
-                  isOpen ? "bg-neutral-50/70" : "hover:bg-neutral-50/50"
-                }`}
+                className="w-full py-5 sm:py-6 px-1 flex items-center justify-between gap-4 text-left cursor-pointer transition-colors"
                 aria-expanded={isOpen}
               >
-                {/* Left: Number, Icon, Title, Tag */}
-                <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-                  <span className="text-xs sm:text-sm font-mono text-neutral-400 font-bold w-5 shrink-0">
+                {/* Left: Number, Icon, Title + Tag */}
+                <div className="flex items-center gap-3.5 sm:gap-4.5 min-w-0 flex-1">
+                  <span className={`text-xs sm:text-sm font-black font-mono tracking-tight tabular-nums shrink-0 transition-colors ${
+                    isOpen ? "text-[#659900]" : "text-neutral-400 group-hover:text-black"
+                  }`}>
                     {formattedIdx}
                   </span>
 
-                  <div className={`w-10 h-10 rounded-2xl flex items-center justify-center shrink-0 border transition-all ${
+                  <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300 ${
                     isOpen 
-                      ? "bg-black text-[#88cc00] border-black" 
-                      : "bg-neutral-100 text-neutral-700 border-neutral-200/80 group-hover:bg-[#88cc00] group-hover:text-black"
+                      ? "bg-black text-[#88cc00]" 
+                      : "bg-neutral-100 text-neutral-700 group-hover:bg-[#88cc00] group-hover:text-black"
                   }`}>
                     {getServiceIcon(service.iconName)}
                   </div>
 
-                  <div className="space-y-0.5 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <h3 className={`text-sm sm:text-base md:text-lg font-bold uppercase tracking-tight transition-colors ${
-                        isOpen ? "text-[#659900]" : "text-black"
-                      }`}>
-                        {service.title}
-                      </h3>
-                      <span className="px-2 py-0.5 rounded-full bg-neutral-100 border border-neutral-200 text-[10px] font-mono uppercase text-neutral-600 font-medium shrink-0">
-                        {service.tag}
-                      </span>
-                    </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className={`text-sm sm:text-base lg:text-[1.1rem] font-black uppercase tracking-tight leading-snug transition-colors ${
+                      isOpen ? "text-[#659900]" : "text-black group-hover:text-[#659900]"
+                    }`}>
+                      {service.title}
+                    </h3>
+                    <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-neutral-400 group-hover:text-neutral-600 transition-colors block mt-0.5">
+                      {service.tag}
+                    </span>
                   </div>
                 </div>
 
                 {/* Right: Plus/Minus Toggle */}
-                <div className="flex items-center gap-2 shrink-0">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all ${
+                <div className="flex items-center shrink-0 ml-2">
+                  <div className={`w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center border transition-all duration-300 ${
                     isOpen 
                       ? "bg-black text-white border-black" 
-                      : "bg-white text-neutral-500 border-neutral-300 hover:border-black hover:text-black"
+                      : "bg-transparent text-neutral-400 border-neutral-200 group-hover:border-black group-hover:text-black group-hover:scale-105"
                   }`}>
                     {isOpen ? (
-                      <Minus className="w-4 h-4" />
+                      <Minus className="w-4 h-4 stroke-[2.5]" />
                     ) : (
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-4 h-4 stroke-[2.5]" />
                     )}
                   </div>
                 </div>
               </button>
 
-              {/* Expanded Content Drawer */}
-              <AnimatePresence initial={false}>
+              {/* Collapsible Accordion Drawer Details */}
+              <AnimatePresence>
                 {isOpen && (
                   <motion.div
-                    key="content"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.28, ease: "easeInOut" }}
-                    className="overflow-hidden bg-neutral-50/40"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden"
                   >
-                    <div className="px-5 sm:px-6 pb-6 pt-4 border-t border-neutral-200/80">
-                      {/* 2-Line Description */}
-                      <div className="space-y-1">
-                        <span className="text-xs font-bold uppercase tracking-wider text-[#659900] font-mono">
-                          {service.tagline}
-                        </span>
-                        <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal line-clamp-2">
-                          {service.shortDesc}
-                        </p>
-                      </div>
+                    <div className="pb-6 pt-1 space-y-3 px-1">
+                      <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#659900] block">
+                        What We Deliver:
+                      </span>
+                      <p className="text-xs sm:text-sm text-neutral-600 leading-relaxed font-normal max-w-xl">
+                        {service.shortDesc}
+                      </p>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </div>
+            </motion.div>
           );
         })}
       </div>
 
       {/* Bottom Growth Strategy Strip */}
       <motion.div 
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="p-6 sm:p-10 rounded-3xl bg-neutral-950 text-white flex flex-col sm:flex-row justify-between items-center gap-6 shadow-xl relative overflow-hidden"
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="p-6 sm:p-8 rounded-3xl bg-neutral-50 border border-neutral-200 text-black flex flex-col sm:flex-row justify-between items-center gap-6 shadow-sm relative overflow-hidden transform-gpu"
       >
         <div className="absolute top-0 right-0 w-80 h-80 bg-[#88cc00]/10 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="space-y-1 text-center sm:text-left relative z-10">
-          <span className="text-xs font-mono uppercase tracking-widest text-[#88cc00] font-bold">
-            TAILORED GROWTH PACKAGE
+        <div className="space-y-1.5 text-center sm:text-left relative z-10">
+          <span className="text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
+            TAILORED DIGITAL SOLUTIONS
           </span>
-          <h3 className="text-xl sm:text-3xl font-black uppercase tracking-tight text-white">
-            Need a Multi-Service Growth Retainer?
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight text-black">
+            Looking for a Customized Package?
           </h3>
-          <p className="text-xs sm:text-sm text-neutral-300 max-w-xl font-light">
-            Combine performance advertising, Next.js web engineering, SEO, and commercial video under a single dedicated growth team.
+          <p className="text-xs sm:text-sm text-neutral-600 max-w-xl font-normal leading-relaxed">
+            We combine social media marketing, targeted ads, search engine optimization, branding, and custom web development to fit your exact business goals.
           </p>
         </div>
 
         <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={() => onSelectServiceForQuote?.("All-in-One Growth Stack")}
-          className="bg-[#88cc00] text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs hover:bg-white transition-all shadow-md shrink-0 flex items-center gap-2 cursor-pointer relative z-10"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => onSelectServiceForQuote?.("Custom Digital Growth Package")}
+          className="bg-black text-white hover:bg-[#88cc00] hover:text-black px-7 py-3.5 rounded-full font-extrabold uppercase tracking-wider text-xs transition-all duration-300 shadow-md shrink-0 flex items-center gap-2 cursor-pointer relative z-10"
         >
-          <span>Request Custom Growth Deck</span>
+          <span>Discuss Your Project</span>
           <ArrowRight className="w-4 h-4" />
         </motion.button>
       </motion.div>

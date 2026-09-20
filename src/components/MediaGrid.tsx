@@ -17,50 +17,50 @@ interface GalleryItem {
 const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: "gallery-1",
-    title: "Brand Architecture & Creative Direction",
+    title: "Brand Identity & Logo Systems",
     category: "Brand Identity",
-    tagline: "Baleni Studio",
-    desc: "Luxury visual identity with bespoke typography, editorial aesthetics, and high-impact art direction.",
+    tagline: "Creative Branding",
+    desc: "Custom brand identity, typography suites, and modern visual design tailored to give your business a distinct market presence.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_32_29_PM.png",
   },
   {
     id: "gallery-2",
-    title: "High-Converting Performance Advertising",
-    category: "Meta Ads & Funnels",
-    tagline: "Nexus Scale",
-    desc: "Targeted paid acquisition creatives engineered for maximum ROAS and rapid customer acquisition.",
+    title: "Meta & Instagram Ads Campaigns",
+    category: "Paid Advertising",
+    tagline: "Targeted Ads",
+    desc: "Targeted Facebook and Instagram ad campaigns crafted to reach your ideal audience and generate customer inquiries.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_26_21_PM.png",
   },
   {
     id: "gallery-3",
-    title: "Spatial Web Engineering & Next.js Flagship",
-    category: "Web & Digital",
-    tagline: "Design Dialects",
-    desc: "Ultra-fast digital flagship experiences with fluid interactions, micro-animations, and modern UI/UX.",
+    title: "Modern Website Development",
+    category: "Web Engineering",
+    tagline: "Web Flagship",
+    desc: "Fast, responsive Next.js websites and custom landing pages designed for high conversion and smooth user experience.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_30_07_PM.png",
   },
   {
     id: "gallery-4",
-    title: "3D Product CGI & Photorealistic Renders",
-    category: "3D Visuals & CGI",
-    tagline: "Aethel Horology",
-    desc: "Sub-millimeter accurate 3D CAD modeling and cinematic product animation for global product launches.",
+    title: "3D Visuals & Product Renders",
+    category: "3D & Motion",
+    tagline: "Visual Design",
+    desc: "High-detail 3D product modeling, realistic rendering, and motion graphics to showcase products attractively.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_26_04_PM.png",
   },
   {
     id: "gallery-5",
-    title: "Commercial Film & High-Tempo Production",
+    title: "Commercial Video & Reel Editing",
     category: "Video Production",
-    tagline: "Cinematic Content",
-    desc: "Commercial cinematography, motion graphics, and viral short-form video reels that drive engagement.",
+    tagline: "Video Content",
+    desc: "Commercial video production, short-form reel edits, and social video assets designed to capture audience attention.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_25_55_PM.png",
   },
   {
     id: "gallery-6",
-    title: "Tactile Packaging & Omnichannel Growth",
-    category: "Packaging & Retail",
-    tagline: "Velvet Aura",
-    desc: "Unboxing design, retail shelf impact, and integrated digital marketing for high-growth consumer brands.",
+    title: "Packaging & Creative Collateral",
+    category: "Packaging & Design",
+    tagline: "Creative Design",
+    desc: "Distinctive product packaging, brand collateral, and digital marketing materials that enhance your brand value.",
     imageUrl: "https://res.cloudinary.com/hh1m6ca1/image/upload/v1789826588/ChatGPT_Image_Sep_19_2026_07_26_13_PM.png",
   },
 ];
@@ -75,20 +75,19 @@ export default function MediaGrid() {
     const video = videoRef.current;
     if (!video) return;
 
-    video.muted = true;
-    video.play().catch(() => {});
-
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (isPlaying) {
+          if (isPlaying && video.paused) {
             video.play().catch(() => {});
           }
         } else {
-          video.pause();
+          if (!video.paused) {
+            video.pause();
+          }
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
     observer.observe(video);
@@ -117,47 +116,103 @@ export default function MediaGrid() {
   };
 
   return (
-    <section className="py-12 sm:py-20 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-8 w-full max-w-full overflow-hidden" id="gallery">
+    <section className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-5 sm:space-y-7 w-full max-w-full overflow-hidden" id="gallery">
       
       {/* Section Header */}
-      <motion.div 
-        initial={{ opacity: 0, y: 25 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.6 }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-6 border-b border-neutral-200"
-      >
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 pb-4 border-b border-neutral-200">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
             <Film className="w-4 h-4 animate-pulse" />
-            <span>CREATIVE CRAFT & PRODUCTION GALLERY</span>
+            <span>CREATIVE DESIGN & PRODUCTION GALLERY</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-black">
-            Crafted for Distinction. <br className="hidden sm:inline" />
-            <span className="text-neutral-500">Engineered to Scale.</span>
+            Creative Design. <br className="hidden sm:inline" />
+            <span className="text-neutral-500">Built For Digital Impact.</span>
           </h2>
         </div>
 
         <p className="text-xs sm:text-sm text-neutral-600 max-w-md font-normal">
-          A visual showcase of our multidisciplinary output: from commercial cinematography and 3D product CGI to luxury brand identities and high-performing digital marketing assets.
+          A showcase of our creative work across graphic design, social media marketing assets, commercial video editing, branding identities, and modern web applications.
         </p>
-      </motion.div>
+      </div>
 
-      {/* Top Showcase: Video + Protocol */}
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 w-full max-w-full">
+      {/* 1. First 3 Gallery Items Grid */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between pt-2">
+          <h3 className="text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
+            Featured Creative & Brand Gallery
+          </h3>
+          <span className="text-xs text-neutral-500 font-mono hidden sm:inline">
+            Click any piece to expand preview
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
+          {GALLERY_ITEMS.slice(0, 3).map((item) => (
+            <div
+              key={item.id}
+              onClick={() => setActiveImage(item)}
+              className="group cursor-pointer relative aspect-[4/5] sm:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg flex flex-col justify-between p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5"
+            >
+              {/* Background Image */}
+              <Image
+                src={item.imageUrl}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-cover opacity-70 group-hover:opacity-85 group-hover:scale-105 transition-all duration-500 ease-out"
+              />
+
+              {/* Gradient Dark Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none" />
+
+              {/* Top Bar Badges */}
+              <div className="relative z-10 flex justify-between items-start gap-2">
+                <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-mono uppercase tracking-wider border border-white/20">
+                  {item.category}
+                </span>
+                <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#88cc00] group-hover:text-black group-hover:rotate-45 transition-all duration-300 shrink-0">
+                  <ArrowUpRight className="w-4 h-4" />
+                </div>
+              </div>
+
+              {/* Bottom Content Area */}
+              <div className="relative z-10 space-y-1.5">
+                <span className="text-xs font-mono text-[#88cc00] uppercase font-bold block">
+                  {item.tagline}
+                </span>
+                <h4 className="text-lg sm:text-xl font-bold text-white uppercase tracking-tight group-hover:text-[#88cc00] transition-colors leading-snug">
+                  {item.title}
+                </h4>
+                <p className="text-xs text-neutral-300 font-light line-clamp-2 leading-relaxed">
+                  {item.desc}
+                </p>
+                
+                <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-[#88cc00] opacity-0 group-hover:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                  <span>Click to view full preview</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. Middle Showcase: Commercial Video + Protocol Bento (After 3 Images) */}
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-5 sm:gap-6 w-full max-w-full py-2">
         
         {/* Bento 1: Commercial Video Showcase (8 Cols) */}
         <div 
-          className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-[#88cc00]/80 shadow-xl group w-full min-w-0 transition-all duration-500 hover:-translate-y-1"
+          className="md:col-span-8 relative aspect-[16/10] sm:aspect-[16/9] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-[#88cc00]/80 shadow-xl group w-full min-w-0 transition-all duration-300 hover:-translate-y-1"
         >
           <video
             ref={videoRef}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 ease-out bg-black"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out bg-black"
             autoPlay
             playsInline
             loop
             muted={isMuted}
-            preload="auto"
+            preload="metadata"
             poster="https://res.cloudinary.com/hh1m6ca1/video/upload/so_0,w_800,f_auto,q_auto/v1789804958/M_Growth___Video_White_Edi_gwr_video_mvp.jpg"
           >
             <source
@@ -204,97 +259,82 @@ export default function MediaGrid() {
 
         {/* Bento 2: Agency Growth Acceleration Manifesto (4 Cols) */}
         <div 
-          className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 hover:border-[#88cc00] p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white transition-all duration-500 hover:-translate-y-1"
+          className="md:col-span-4 relative rounded-3xl overflow-hidden bg-neutral-900 border-2 border-neutral-200 hover:border-[#88cc00] p-6 sm:p-8 flex flex-col justify-between shadow-lg text-white transition-all duration-300 hover:-translate-y-1"
         >
           <div className="flex items-center justify-between">
             <span className="px-3 py-1 rounded-full bg-[#88cc00]/20 border border-[#88cc00]/40 text-[#88cc00] text-[10px] font-mono uppercase font-bold tracking-widest">
-              Growth Protocol
+              Agency Approach
             </span>
             <Sparkles className="w-5 h-5 text-[#88cc00] animate-pulse" />
           </div>
 
           <div className="space-y-3 my-auto py-6">
             <h4 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white leading-tight">
-              Zero Guesswork. <br />
-              <span className="text-[#88cc00]">Compound Growth.</span>
+              Creative Strategy. <br />
+              <span className="text-[#88cc00]">Measurable Results.</span>
             </h4>
             <p className="text-xs text-neutral-300 leading-relaxed font-light">
-              We replace fragmented freelancers with a single high-tempo growth agency covering performance ads, SEO, Next.js web engineering, and commercial production.
+              We provide end-to-end digital solutions covering social media marketing, targeted paid ads, search optimization, and modern web development under one dedicated team.
             </p>
           </div>
 
           <div className="pt-4 border-t border-neutral-800 flex items-center justify-between text-xs font-mono text-neutral-400">
-            <span>ROI-FOCUSED</span>
-            <span className="text-[#88cc00] font-bold">100% ACCOUNTABLE</span>
+            <span>RESULTS-ORIENTED</span>
+            <span className="text-[#88cc00] font-bold">DEDICATED TEAM</span>
           </div>
         </div>
 
       </div>
 
-      {/* Official 6-Item High-Impact Creative Gallery Grid */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between pt-4">
-          <h3 className="text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
-            Featured Creative & Brand Gallery (6 Key Pillars)
-          </h3>
-          <span className="text-xs text-neutral-500 font-mono hidden sm:inline">
-            Click any piece to expand preview
-          </span>
-        </div>
+      {/* 3. Second 3 Gallery Items Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
+        {GALLERY_ITEMS.slice(3, 6).map((item) => (
+          <div
+            key={item.id}
+            onClick={() => setActiveImage(item)}
+            className="group cursor-pointer relative aspect-[4/5] sm:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg flex flex-col justify-between p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1.5"
+          >
+            {/* Background Image */}
+            <Image
+              src={item.imageUrl}
+              alt={item.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover opacity-70 group-hover:opacity-85 group-hover:scale-105 transition-all duration-500 ease-out"
+            />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full max-w-full">
-          {GALLERY_ITEMS.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              onClick={() => setActiveImage(item)}
-              className="group cursor-pointer relative aspect-[4/5] sm:aspect-[4/5] rounded-3xl overflow-hidden bg-black border-2 border-neutral-200 hover:border-black shadow-lg flex flex-col justify-between p-6 sm:p-7 transition-all duration-500 hover:-translate-y-1.5"
-            >
-              {/* Background Image */}
-              <Image
-                src={item.imageUrl}
-                alt={item.title}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-cover opacity-70 group-hover:opacity-85 group-hover:scale-108 transition-all duration-700 ease-out"
-              />
+            {/* Gradient Dark Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none" />
 
-              {/* Gradient Dark Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/20 pointer-events-none" />
-
-              {/* Top Bar Badges */}
-              <div className="relative z-10 flex justify-between items-start gap-2">
-                <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-mono uppercase tracking-wider border border-white/20">
-                  {item.category}
-                </span>
-                <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#88cc00] group-hover:text-black group-hover:rotate-45 transition-all duration-300 shrink-0">
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
+            {/* Top Bar Badges */}
+            <div className="relative z-10 flex justify-between items-start gap-2">
+              <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-[10px] font-mono uppercase tracking-wider border border-white/20">
+                {item.category}
+              </span>
+              <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white group-hover:bg-[#88cc00] group-hover:text-black group-hover:rotate-45 transition-all duration-300 shrink-0">
+                <ArrowUpRight className="w-4 h-4" />
               </div>
+            </div>
 
-              {/* Bottom Content Area */}
-              <div className="relative z-10 space-y-1.5">
-                <span className="text-xs font-mono text-[#88cc00] uppercase font-bold block">
-                  {item.tagline}
-                </span>
-                <h4 className="text-lg sm:text-xl font-bold text-white uppercase tracking-tight group-hover:text-[#88cc00] transition-colors leading-snug">
-                  {item.title}
-                </h4>
-                <p className="text-xs text-neutral-300 font-light line-clamp-2 leading-relaxed">
-                  {item.desc}
-                </p>
-                
-                <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-[#88cc00] opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Maximize2 className="w-3.5 h-3.5" />
-                  <span>Click to view full preview</span>
-                </div>
+            {/* Bottom Content Area */}
+            <div className="relative z-10 space-y-1.5">
+              <span className="text-xs font-mono text-[#88cc00] uppercase font-bold block">
+                {item.tagline}
+              </span>
+              <h4 className="text-lg sm:text-xl font-bold text-white uppercase tracking-tight group-hover:text-[#88cc00] transition-colors leading-snug">
+                {item.title}
+              </h4>
+              <p className="text-xs text-neutral-300 font-light line-clamp-2 leading-relaxed">
+                {item.desc}
+              </p>
+              
+              <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-[#88cc00] opacity-0 group-hover:opacity-100 transition-opacity">
+                <Maximize2 className="w-3.5 h-3.5" />
+                <span>Click to view full preview</span>
               </div>
-            </motion.div>
-          ))}
-        </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Fullscreen Lightbox Modal */}

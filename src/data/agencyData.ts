@@ -151,7 +151,7 @@ export const SERVICES_DATA: ServiceItem[] = [
     title: "Video Production & Editing",
     tagline: "Impactful Videos that Perform.",
     shortDesc: "High-octane commercial video production, 3D CGI product renders, and social-first viral edits that stop thumbs.",
-    fullDesc: "Cinematic commercial production meets performance video marketing. Our in-house production crew handles scripting, directing, 4K camera production, drone cinematography, color grading, sound design, and 3D product motion graphics.",
+    fullDesc: "Cinematic commercial production meets performance video marketing. Our in-house production crew handles scripting, directing, professional camera production, drone cinematography, color grading, sound design, and 3D product motion graphics.",
     iconName: "Video",
     deliverables: ["Brand Commercials & Launch Films", "3D Product CGI & Motion Graphics", "Short-Form TikTok & Reel Edits", "Cinematic Sound Design & Audio", "Art Direction & Lookbooks"],
     metric: "12M+ Organic Views",
@@ -371,22 +371,22 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
 export const AGENCY_PROCESS = [
   {
     step: "01",
-    title: "Discovery & Deep Audit",
-    desc: "We dissect your business model, target demographics, competitive landscape, and current funnels to uncover asymmetric growth levers.",
+    title: "Understanding & Research",
+    desc: "We study your business goals, target audience, and current online presence to identify the best opportunities for growth.",
   },
   {
     step: "02",
-    title: "Strategy & Creative Architecture",
-    desc: "We formulate an unforgettable visual identity, high-conversion messaging frameworks, and bespoke motion guidelines that set you apart.",
+    title: "Strategy & Planning",
+    desc: "We map out a clear roadmap covering social media plans, advertising campaigns, creative design, and website requirements.",
   },
   {
     step: "03",
-    title: "Multi-Channel Deployment",
-    desc: "We build ultra-fast Next.js digital platforms, set up hyper-targeted ad funnels, and produce cinematic commercial assets.",
+    title: "Execution & Launch",
+    desc: "Our team creates high-quality design assets, sets up targeted ad campaigns, builds your web pages, and launches on schedule.",
   },
   {
     step: "04",
-    title: "Rapid Scaling & Analytics",
-    desc: "We deploy continuous A/B testing, cohort analysis, and ROAS optimization engines to aggressively scale revenue and market share.",
+    title: "Monitoring & Optimization",
+    desc: "We track campaign performance, analyze user engagement, and continuously refine our strategies to maximize your ROI.",
   },
 ];

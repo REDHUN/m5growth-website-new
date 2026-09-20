@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AGENCY_STATS, AGENCY_PROCESS } from "@/data/agencyData";
+import { AGENCY_PROCESS } from "@/data/agencyData";
 import { Zap, Target, Cpu, Rocket, TrendingUp } from "lucide-react";
 
 export default function StatsAndProcess() {
@@ -16,7 +16,7 @@ export default function StatsAndProcess() {
   };
 
   return (
-    <section className="py-16 sm:py-24 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-12 sm:space-y-16 scroll-mt-20 overflow-hidden w-full max-w-full" id="process">
+    <section className="py-6 sm:py-10 px-4 sm:px-8 lg:px-12 xl:px-14 max-w-[1550px] mx-auto space-y-5 sm:space-y-7 scroll-mt-20 overflow-hidden w-full max-w-full" id="process">
       
       {/* 4-Phase Growth Protocol Box */}
       <motion.div 
@@ -24,7 +24,7 @@ export default function StatsAndProcess() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        className="relative rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-12 xl:p-16 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-8 sm:space-y-12 w-full max-w-full min-w-0"
+        className="relative rounded-3xl sm:rounded-[2.5rem] p-5 sm:p-8 xl:p-10 bg-neutral-50 border border-neutral-200 shadow-sm overflow-hidden space-y-6 sm:space-y-8 w-full max-w-full min-w-0"
       >
         
         {/* Glow ambient */}
@@ -38,31 +38,35 @@ export default function StatsAndProcess() {
         />
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-6 pb-6 sm:pb-8 border-b border-neutral-200 relative z-10 min-w-0 w-full">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 sm:gap-6 pb-4 sm:pb-6 border-b border-neutral-200 relative z-10 min-w-0 w-full">
           <div className="space-y-2 sm:space-y-3 min-w-0">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-neutral-200 text-xs font-mono uppercase tracking-widest text-[#659900] font-bold">
               <Zap className="w-3.5 h-3.5" />
-              <span>THE M5 GROWTH PROTOCOL</span>
+              <span>HOW WE WORK</span>
             </div>
             <h2 className="text-2xl sm:text-5xl xl:text-6xl font-black uppercase tracking-tight text-black break-words">
-              Systematic Scale. <br />
+              Clear Process. <br />
               <span className="text-neutral-500">
-                Predictable Growth.
+                Steady Growth.
               </span>
             </h2>
           </div>
 
           <p className="text-xs sm:text-sm text-neutral-600 max-w-md font-normal leading-relaxed">
-            Our agile growth methodology eliminates agency bloat. We execute with algorithmic discipline to move brands from initial validation to market dominance.
+            We follow a transparent and structured 4-step workflow to help your business reach the right audience, generate qualified inquiries, and build lasting digital brand value.
           </p>
         </div>
 
         {/* 4-Phase Process Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10 w-full max-w-full">
           {AGENCY_PROCESS.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4 sm:space-y-6 group shadow-xs hover:shadow-lg w-full min-w-0"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: "easeOut" }}
+              className="p-5 sm:p-6 rounded-2xl bg-white border border-neutral-200 hover:border-black transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between space-y-4 sm:space-y-6 group shadow-xs hover:shadow-lg w-full min-w-0 transform-gpu"
             >
               <div className="flex justify-between items-center">
                 <span className="text-3xl font-black text-[#659900] font-mono group-hover:scale-110 transition-transform origin-left">
@@ -83,38 +87,13 @@ export default function StatsAndProcess() {
               </div>
 
               <div className="pt-2 border-t border-neutral-100 flex items-center gap-1 text-[11px] font-mono text-neutral-400 group-hover:text-black transition-colors">
-                <span>Phase {idx + 1} Deliverable Ready</span>
+                <span>Step {idx + 1} • Key Milestone</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
       </motion.div>
-
-      {/* Global Impact Numbers */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        {AGENCY_STATS.map((stat, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, scale: 0.92, y: 20 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.08 }}
-            whileHover={{ y: -4, transition: { duration: 0.2 } }}
-            className="p-6 sm:p-8 rounded-3xl bg-white border border-neutral-200 hover:border-black transition-all space-y-2 group shadow-sm hover:shadow-lg"
-          >
-            <div className="text-4xl sm:text-5xl font-black text-black group-hover:text-[#659900] font-mono tracking-tight transition-colors">
-              {stat.value}
-            </div>
-            <div className="text-xs sm:text-sm font-bold uppercase tracking-wider text-neutral-900">
-              {stat.label}
-            </div>
-            <p className="text-xs text-neutral-500 font-normal">
-              {stat.desc}
-            </p>
-          </motion.div>
-        ))}
-      </div>
 
     </section>
   );

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useSpring } from "framer-motion";
 import { Menu, X, ArrowUpRight, Sparkles, ArrowRight, Activity } from "lucide-react";
 
@@ -32,7 +33,6 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
     { name: "Services", href: "#services" },
     { name: "Gallery", href: "#gallery" },
     { name: "Protocol", href: "#process" },
-    { name: "Impact", href: "#testimonials" },
     { name: "Contact", href: "#contact" },
   ];
 
@@ -53,21 +53,22 @@ export default function Header({ onOpenConsultation }: HeaderProps) {
       >
         <div className="max-w-[1550px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-14 flex items-center justify-between">
           
-          {/* Brand Logo & Availability Pill */}
+          {/* Brand Logo */}
           <div className="flex items-center gap-4">
             <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-8 h-8 rounded-lg bg-black text-[#88cc00] font-black flex items-center justify-center text-sm shadow-md group-hover:bg-[#88cc00] group-hover:text-black transition-all">
-                M5
+              <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-lg overflow-hidden bg-black shadow-md border border-neutral-800 shrink-0 group-hover:scale-105 transition-transform">
+                <Image
+                  src="/logo.jpg"
+                  alt="M5 Growth Logo"
+                  fill
+                  className="object-cover"
+                  priority
+                />
               </div>
-              <span className="font-extrabold text-lg tracking-tight text-black group-hover:text-[#659900] transition-colors">
+              <span className="font-extrabold text-lg sm:text-xl tracking-tight text-black group-hover:text-[#659900] transition-colors">
                 GROWTH<span className="text-[#88cc00]">.</span>
               </span>
             </Link>
-
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-neutral-100 border border-neutral-200 text-[11px] font-mono text-neutral-700">
-              <span className="w-2 h-2 rounded-full bg-[#88cc00] animate-pulse" />
-              <span>Accepting Q2/Q3 Projects</span>
-            </div>
           </div>
 
           {/* Center Desktop Navigation */}

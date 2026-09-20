@@ -1,28 +1,35 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
 
 export default function TextMarquee() {
   const line1Phrases = [
-    "MAKE YOUR BRAND STAND OUT",
-    "SCALE BEYOND LIMITS",
-    "DIGITAL GROWTH ARCHITECTURE",
-    "UNSTOPPABLE TRAJECTORY",
-    "CRAFTING MODERN LEGACIES",
-    "HIGH-VELOCITY PERFORMANCE",
+    "CREATIVE DIGITAL MARKETING",
+    "BUILD YOUR DIGITAL PRESENCE",
+    "GROW YOUR BRAND ONLINE",
+    "MODERN WEBSITES & BRANDING",
+    "CONTENT THAT ENGAGES",
+    "M5 DIGITAL GROWTH",
   ];
 
   const line2Phrases = [
-    "NEXT.JS WEB ENGINEERING",
-    "META ADS & ROAS SCALING",
-    "CINEMATIC 4K PRODUCTION",
-    "3D CGI & MOTION DESIGN",
-    "HIGH-INTENT SEO DOMINATION",
-    "SERVER-SIDE ATTRIBUTION",
+    "SOCIAL MEDIA MARKETING",
+    "SEARCH ENGINE OPTIMIZATION",
+    "META & GOOGLE ADS",
+    "WEBSITE DEVELOPMENT",
+    "GRAPHIC DESIGN & BRANDING",
+    "VIDEO PRODUCTION & EDITING",
   ];
 
   return (
-    <div className="py-8 sm:py-14 bg-white text-black overflow-hidden select-none border-y border-neutral-200/80 space-y-3 sm:space-y-4">
+    <motion.div 
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="my-3 sm:my-4 py-3 sm:py-4 bg-white text-black overflow-hidden select-none border-y border-neutral-200/80 space-y-2 sm:space-y-2.5 transform-gpu"
+    >
 
       {/* Ribbon 1: Massive Primary Headline Scrolling Left */}
       <div className="relative w-full overflow-hidden flex whitespace-nowrap">
@@ -59,6 +66,6 @@ export default function TextMarquee() {
         </div>
       </div>
 
-    </div>
+    </motion.div>
   );
 }
